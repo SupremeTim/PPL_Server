@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const path = require('path');
 const session = require('express-session');
 const flash = require('connect-flash');
+require('dotenv').config();
 
 const app = express();
 
@@ -19,7 +20,7 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(session({
   resave: false,
   saveUninitialized: false,
-  secret: process.env.COOKIE_SECRET,
+  secret:process.env.COOKIE_SECRET,
   cookie: {
     httpOnly: true,
     secure: false,
