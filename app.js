@@ -10,9 +10,11 @@ require('dotenv').config();
 const homeRouter = require('./routes/home');
 const authRouter = require('./routes/auth');
 const passportConfig = require('./passport');
+const {sequelize}=require('./models');
 
 const app = express();
 passportConfig(passport);
+sequelize.sync();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
