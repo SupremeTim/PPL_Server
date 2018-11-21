@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING(20),
             allowNull: false,
         },
-        nick: {
+        nick: { // 로그인 시 입력하는 아이디
             type: DataTypes.STRING(15),
             allowNull: false,
             unique: true,
@@ -14,15 +14,23 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
         email: {
-            type: DataTypes.STRING(40),
+            type: DataTypes.STRING(45),
             allowNull: false,
         },
         phone: {
-            type: DataTypes.STRING(15),
+            type: DataTypes.STRING(20),
             allowNull: false,
         },
         birth: {
-            type: DataTypes.STRING(10),
+            type: DataTypes.DATE,
+            allowNull: false,
+        },
+        career: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+        },
+        product: {
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
     }, {
