@@ -45,7 +45,9 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
                 console.error(loginError);
                 return next(loginError);
             }
-            return res.redirect('/');
+            return res.render('', {
+                name: user.name,
+            });       // 메인 페이지 '양시연님' 출력용도, name 프론트랑 맞추기, html 파일 맞추기!!!!!!
         });
     })(req, res, next);
 });
