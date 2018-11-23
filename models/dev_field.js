@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => (
     sequelize.define('dev_field', {
         android: {
             type: DataTypes.BOOLEAN,
@@ -17,4 +17,4 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
     }, {})
-};
+);

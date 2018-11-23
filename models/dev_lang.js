@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => (
     sequelize.define('dev_lang', {
         c: {
             type: DataTypes.BOOLEAN,
@@ -21,4 +21,4 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
     }, {})
-};
+);

@@ -1,7 +1,7 @@
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => (
     sequelize.define('info', {
         profile_image: {
-            type: DataTypes.BLOB,
+            type: DataTypes.STRING(200),
             allowNull: true,
         },
         open_age: {
@@ -13,4 +13,4 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true,
         },
     }, {})
-};
+);

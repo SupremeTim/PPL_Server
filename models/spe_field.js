@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => (
     sequelize.define('spe_field', {
         secure: {
             type: DataTypes.BOOLEAN,
@@ -33,4 +33,4 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
     }, {})
-};
+);

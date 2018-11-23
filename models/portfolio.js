@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => (
     sequelize.define('portfolio', {
         port_url: {
             type: DataTypes.STRING(50),
@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         views: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            allowNull: true,
         },
     })
-};
+);

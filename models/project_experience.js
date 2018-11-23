@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => (
     sequelize.define('project_experience', {
         pro_name: {
             type: DataTypes.STRING(20),
@@ -17,4 +17,4 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true,
         },
     }, {})
-};
+);
