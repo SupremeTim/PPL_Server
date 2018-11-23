@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => (
             allowNull: false,
         },
         pro_image: {
-            type: DataTypes.BLOB,
+            type: DataTypes.STRING(200),
             allowNull: true,
         },
     }, {})

@@ -31,12 +31,12 @@ db.Portfolio.hasOne(db.Info, {foreignKey: 'port_id', sourceKey: 'id'});
 db.Info.belongsTo(db.Portfolio, {foreignKey: 'port_id', targetKey: 'id'});
 
 // info 1 : 1 pro_ex - 포트폴리오 하나 당 프로젝트 경험 하나를 입력받으므로 입력 정보와 경험의 관계는 1:1
-db.Portfolio.hasOne(db.Project_Experience, {foreignKey: 'port_id', sourceKey: 'id'});
+db.Portfolio.hasMany(db.Project_Experience, {foreignKey: 'port_id', sourceKey: 'id'});
 db.Project_Experience.belongsTo(db.Portfolio, {foreignKey: 'port_id', targetKey: 'id'});
 
 // portfolio 1 : 1 template - 포트폴리오는 하나의 템플릿으로 구성되므로 1:1
-db.Portfolio.hasOne(db.Template, {foreignKey: 'port_id', sourceKey: 'id'});
-db.Template.belongsTo(db.Portfolio, {foreignKey: 'port_id', targetKey: 'id'});
+db.Template.hasMany(db.Portfolio, {foreignKey: 'temp_id', sourceKey: 'id'});
+db.Portfolio.belongsTo(db.Template, {foreignKey: 'temp_id', targetKey: 'id'});
 
 // portfolio 1 : 1 category_header - 포트폴리오 하나는 카테고리 묶음 하나를 갖는다
 db.Portfolio.hasOne(db.Category_Header, {foreignKey: 'port_id', sourceKey: 'id'});
