@@ -20,11 +20,21 @@ db.Category_Header = require('./category_header')(sequelize, Sequelize); // 카�
 db.Dev_Field = require('./dev_field')(sequelize, Sequelize); // 카테고리 - 개발 분야
 db.Spe_Field = require('./spe_field')(sequelize, Sequelize); // 카테고리 - 전문 분야
 db.Dev_Lang = require('./dev_lang')(sequelize, Sequelize); // 카테고리 - 개발 언어
+db.Career = require('./career')(sequelize, Sequelize); // 경력
+db.Graduated = require('./graduated')(sequelize, Sequelize); // 출신 학교
 
 // 테이블 별 관계 설정
 // user 1 : N portfolio - 사용자 한명 당 여러개의 포트폴리오를 가질 수 있다
 db.User.hasMany(db.Portfolio, { foreignKey: 'user_id', sourceKey: 'id' });
 db.Portfolio.belongsTo(db.User, {foreignKey: 'user_id', targetKey: 'id'});
+
+// user 1 : N career - 사용자 한명 당 여러개의 경력 사항을 가질 수 있다
+db.User.hasMany(db.Career, { foreignKey: 'user_id', sourceKey: 'id'});
+db.Career.belongsTo(db.User { foreignKey: 'user_id', targetKey: 'id'});
+
+// user 1 : 1 graduated - 사용자 한명 당 하나의 출신 학교를 갖는다
+db.User.hasOne(db.Graduated, { foreignKey: 'user_id', sourceKey: 'id'});
+db.Graduated.belongsTo(db.User, { foreignKey: 'user_id', targetKey: 'id'});
 
 // portfolio 1 : 1 info - 포트폴리오 하나 당 입력하는 회원 정보는 하나다
 db.Portfolio.hasOne(db.Info, {foreignKey: 'port_id', sourceKey: 'id'});

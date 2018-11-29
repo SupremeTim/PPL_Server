@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => (
     sequelize.define('template', {
         tem_image: {
-            type: DataTypes.BLOB,
+            type: DataTypes.STRING(200),
             allowNull: false,
         },
     }, {})

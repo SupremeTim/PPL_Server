@@ -4,9 +4,13 @@ module.exports = (sequelize, DataTypes) => (
             type: DataTypes.STRING(50),
             allowNull: false,
         },
-        views: {
+        port_views: {
             type: DataTypes.INTEGER,
             allowNull: true,
+        },
+        port_name: {
+            type: DataTypes.STRING(20),
+            allowNull: false,
         },
     })
 );

@@ -16,5 +16,9 @@ module.exports = (sequelize, DataTypes) => (
             type: DataTypes.STRING(200),
             allowNull: true,
         },
+        pro_facebook: {
+            type: DataTypes.STRING(45),
+            allowNull: true,
+        },
     }, {})
 );

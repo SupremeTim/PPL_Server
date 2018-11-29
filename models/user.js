@@ -25,10 +25,6 @@ module.exports = (sequelize, DataTypes) => (
             type: DataTypes.DATE,
             allowNull: false,
         },
-        career: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-        },
         product: {
             type: DataTypes.INTEGER,
             allowNull: false,
