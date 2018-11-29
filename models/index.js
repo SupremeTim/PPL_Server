@@ -30,7 +30,7 @@ db.Portfolio.belongsTo(db.User, {foreignKey: 'user_id', targetKey: 'id'});
 
 // user 1 : N career - 사용자 한명 당 여러개의 경력 사항을 가질 수 있다
 db.User.hasMany(db.Career, { foreignKey: 'user_id', sourceKey: 'id'});
-db.Career.belongsTo(db.User { foreignKey: 'user_id', targetKey: 'id'});
+db.Career.belongsTo(db.User, { foreignKey: 'user_id', targetKey: 'id'});
 
 // user 1 : 1 graduated - 사용자 한명 당 하나의 출신 학교를 갖는다
 db.User.hasOne(db.Graduated, { foreignKey: 'user_id', sourceKey: 'id'});
