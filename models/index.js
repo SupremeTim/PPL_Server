@@ -49,15 +49,15 @@ db.Template.hasMany(db.Portfolio, {foreignKey: 'temp_id', sourceKey: 'id'});
 db.Portfolio.belongsTo(db.Template, {foreignKey: 'temp_id', targetKey: 'id'});
 
 // portfolio 1 : 1 category_header - 포트폴리오 하나는 카테고리 묶음 하나를 갖는다
-db.Portfolio.hasOne(db.Category_Header, {foreignKey: 'port_id', sourceKey: 'id'});
-db.Category_Header.belongsTo(db.Portfolio, {foreignKey: 'port_id', targetKey: 'id'});
+// db.Portfolio.hasOne(db.Category_Header, {foreignKey: 'port_id', sourceKey: 'id'});
+// db.Category_Header.belongsTo(db.Portfolio, {foreignKey: 'port_id', targetKey: 'id'});
 
 // category_header 1 : 1 dev_field, spe_field, dev_lang - 카테고리 묶음은 개발 분야, 전문 분야, 개발 언어를 하나씩 갖는다
-db.Category_Header.hasOne(db.Dev_Field, {foreignKey: 'category_id', sourceKey: 'id'});
-db.Dev_Field.belongsTo(db.Category_Header, {foreignKey: 'category_id', targetKey: 'id'});
-db.Category_Header.hasOne(db.Spe_Field, {foreignKey: 'category_id', sourceKey: 'id'});
-db.Spe_Field.belongsTo(db.Category_Header, {foreignKey: 'category_id', targetKey: 'id'});
-db.Category_Header.hasOne(db.Dev_Lang, {foreignKey: 'category_id', sourceKey: 'id'});
-db.Dev_Lang.belongsTo(db.Category_Header, {foreignKey: 'category_id', targetKey: 'id'});
+db.Portfolio.hasOne(db.Dev_Field, {foreignKey: 'port_id', sourceKey: 'id'});
+db.Dev_Field.belongsTo(db.Portfolio, {foreignKey: 'port_id', targetKey: 'id'});
+db.Portfolio.hasOne(db.Spe_Field, {foreignKey: 'port_id', sourceKey: 'id'});
+db.Spe_Field.belongsTo(db.Portfolio, {foreignKey: 'port_id', targetKey: 'id'});
+db.Portfolio.hasOne(db.Dev_Lang, {foreignKey: 'port_id', sourceKey: 'id'});
+db.Dev_Lang.belongsTo(db.Portfolio, {foreignKey: 'port_id', targetKey: 'id'});
 
 module.exports = db;
