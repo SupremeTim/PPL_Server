@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => (
             allowNull: false,
         },
         birth: {
-            type: DataTypes.DATE,
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
         product: {
