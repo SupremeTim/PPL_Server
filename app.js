@@ -12,6 +12,9 @@ const authRouter = require('./routes/auth');
 const passportConfig = require('./passport');
 const infoRouter = require('./routes/info');
 const storyRouter = require('./routes/story');
+const templateRouter = require('./routes/template');
+const portRouter = require('./routes/portfolio');
+const searchRouter = require('./routes/search');
 const { sequelize } = require('./models');
 
 const app = express();
@@ -45,6 +48,9 @@ app.use('/', homeRouter);
 app.use('/auth', authRouter);
 app.use('/info', infoRouter);
 app.use('/story', storyRouter);
+app.use('/template', templateRouter);
+app.use('/portfolio', portRouter);
+app.use('/searc', searchRouter);
 
 app.use((req, res, next) => {
   const err = new Error('Not Found');
