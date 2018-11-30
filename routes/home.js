@@ -14,7 +14,7 @@ router.get('/make', isLoggedIn, (req, res, next) => {
 });
 
 router.get('/search', (req, res, next) => {
-    //res.redirect('');
+    res.redirect('/search');
 });
 
 router.get('/product', isLoggedIn, (req, res, next) => {
