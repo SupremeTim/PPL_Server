@@ -7,13 +7,16 @@ const { User } = require('../models');
 const router = express.Router();
 
 router.post('/join', isNotLoggedIn, async (req, res, next) => {
-    const { nick, password, email, birth, phone, name } = req.body; // form태그 name 변수
+    const { name, nick, password, email, phone, year } = req.body; // form태그 name 변수
     try {
         const exUser = await User.find({ where: { nick } });
         if (exUser) {
             req.flash('joinError', '이미 가입된 아이디입니다.');
             return res.redirect('/join');
         }
+        const d = new Date();
+        const n = d.getFullYear();
+        const age = n - year;
         const hash = await bcrypt.hash(password, 12);
         await User.create({
             name,
@@ -21,7 +24,7 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
             password: hash,
             email,
             phone,
-            birth,
+            birth: age,
         });
         return res.redirect('/');
     } catch (error) {
