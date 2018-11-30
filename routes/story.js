@@ -56,21 +56,21 @@ router.post('/submit', async (req, res, next) => {
             server:req.body.data1[3],
         });
         await Dev_Lang.create({
-            c:,
-            cpp:,
-            csharp:,
-            java:,
-            python:,
+            c:req.body.data2[0],
+            cpp:req.body.data2[1],
+            csharp:req.body.data2[2],
+            java:req.body.data2[3],
+            python:req.body.data2[4],
         });
         await Spe_Field.create({
-            secure:,
-            iot:,
-            ai:,
-            bigdata:,
-            db:,
-            game:,
-            networking:,
-            os:,
+            secure:req.body.data3[0],
+            iot:req.body.data3[1],
+            ai:req.body.data3[2],
+            bigdata:req.body.data3[3],
+            db:req.body.data3[4],
+            game:req.body.data3[5],
+            networking:req.body.data3[6],
+            os:req.body.data3[7],
         });                     // 역량 저장
         res.redirect('/template');
     } catch (error) {
