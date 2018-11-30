@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => (
             type: DataTypes.STRING(50),
             allowNull: true,
         },
-        cmo_emp: {
+        com_emp: {
             type: DataTypes.BOOLEAN,
             allowNull: true,
         },
