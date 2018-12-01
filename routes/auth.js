@@ -6,7 +6,15 @@ const { User } = require('../models');
 
 const router = express.Router();
 
-router.post('/join', isNotLoggedIn, async (req, res, next) => {
+router.get('/', isNotLoggedIn, (req, res, next) => {
+    res.render('loginpage');
+});
+
+router.get('/temp', isNotLoggedIn, (req, res, next) => {
+    res.render('joinpage');
+});
+
+router.get('/join', isNotLoggedIn, async (req, res, next) => {
     const { name, nick, password, email, phone, year } = req.body; // form태그 name 변수
     try {
         const exUser = await User.find({ where: { nick } });
@@ -41,7 +49,9 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
         }
         if (!user) {
             req.flash('loginError', info.message);
-            return res.redirect('/');
+            return res.render('loginpage', {
+                message: info.message,
+            });
         }
         return req.login(user, (loginError) => {
             if (loginError) {
