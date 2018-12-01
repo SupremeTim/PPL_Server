@@ -18,11 +18,10 @@ html
       if user && user.id  
         .login_complete
           img(src='../icon/mainpage_profileicon.png', alt='profileicon')
-          |  user.name 님
-          |          |
-          |       설정
-          |          |
-          |       로그아웃
+          .user_name= user.name +'님'
+          a(href='') 설정
+          a(href='/auth/logout') 로그아웃
+          //- 디자인 요청!!!
       else
         .login
           a(href='/auth') 로그인 / 회원가입
@@ -31,11 +30,11 @@ html
     // 메뉴바
     ul.mainmenu
       li#searchmenu.menu
-        a(href='searchpage.html') SEARCH
+        a(href='/search') SEARCH
       li#portfoliiomenu.menu
-        a(href='portfolio.html') PORTFOLIO
+        a(href='/portfolio') PORTFOLIO
       li#productmenu.menu
-        a(href='product.html') PRODUCT
+        a(href='/product') PRODUCT
     // main
     .main
       #fp.mainphrase
@@ -44,7 +43,7 @@ html
         | 하세요.
       #sp.mainphrase 당신이 어떤사람인지, 우리가 대신 소개할게요.
       #imgDiv
-        a(href='portfolio.html')
+        a(href='/portfolio')
           img(src='../icon/mainpage_startbutton_off.png', onmouseover="this.src='../icon/mainpage_startbutton_on.png';", onmouseout="this.src='../icon/mainpage_startbutton_off.png';", alt='start', title='start')
       img.animated.bounce.infinite(src='../icon/mainpage_downarrow.png', alt='downarrow')
     // main info
@@ -97,5 +96,5 @@ html
     .lastment
       h2.myportfolio 나만의 포트폴리오,
       #imgDiv2
-        a(href='portfolio.html')
+        a(href='/portfolio')
           img(src='../icon/mainpage_startbutton2_off.png', onmouseover="this.src='../icon/mainpage_startbutton2_on.png';", onmouseout="this.src='../icon/mainpage_startbutton2_off.png';", alt='start2', title='start2')
