@@ -14,17 +14,29 @@ router.get('/temp', isNotLoggedIn, (req, res, next) => {
     res.render('joinpage');
 });
 
-router.get('/join', isNotLoggedIn, async (req, res, next) => {
-    const { name, nick, password, email, phone, year } = req.body; // form태그 name 변수
+router.get('/check', async (req, res, next) => {              // 중복확인 라우터
     try {
         const exUser = await User.find({ where: { nick } });
         if (exUser) {
             req.flash('joinError', '이미 가입된 아이디입니다.');
             return res.redirect('/join');
         }
-        const d = new Date();
-        const n = d.getFullYear();
-        const age = n - year;
+    } catch (error) {
+        console.error(error);
+        return next('error');
+    }
+})
+router.post('/join', isNotLoggedIn, async (req, res, next) => {
+    const { name, nick, password, email, phone, /*year*/ } = req.body;
+    try {
+        const exUser = await User.find({ where: { nick } });
+        if (exUser) {
+            req.flash('joinError', '이미 가입된 아이디입니다.');
+            return res.redirect('/join');
+        }
+        //const d = new Date();
+        //const n = d.getFullYear();
+        //const age = n - year;
         const hash = await bcrypt.hash(password, 12);
         await User.create({
             name,
@@ -32,9 +44,11 @@ router.get('/join', isNotLoggedIn, async (req, res, next) => {
             password: hash,
             email,
             phone,
-            birth: age,
+            //birth: age,
         });
-        return res.redirect('/');
+        return res.render('loginpage', {
+            joinSign: 'ok',
+        });
     } catch (error) {
         console.error(error);
         return next('error');
@@ -58,7 +72,9 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
                 console.error(loginError);
                 return next(loginError);
             }
-            return res.redirect('/');
+            return res.render('index', {
+                user: req.user,
+            });
         });
     })(req, res, next);
 });
