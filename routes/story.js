@@ -7,7 +7,7 @@ const { isLoggedIn, isNotLoggedIn, upload } = require('./middlewares');
 var portId;
 const router = express.Router();
 
-router.get('/', isLoggedIn, (req, res, next) => {
+router.get('/', isLoggedIn, async(req, res, next) => {
     portId = await Portfolio.find({
         attributes: 'id',            // 포트폴리오 id를 가져옴
         where: {
@@ -19,13 +19,13 @@ router.get('/', isLoggedIn, (req, res, next) => {
         name: req.user.name,     // 오른쪽 위에 이름 출력
     });                        // 기본정보에서 다음 누르고 난뒤 프론트파일 보여주기
 });
-
+/*
 fs.readdir('uploads', (error) => {
     if (error) {
         console.error('uploads 폴더가 없어 생성합니다.');
         fs.mkdirSync('uploads');
     }
-});
+});*/
 
 router.post('/img', upload.single('img'), (req, res) => {
     res.json({ url: `/img/${req.file.filename}` });

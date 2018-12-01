@@ -9,7 +9,7 @@ router.get('/',(req,res,next)=>{
     });
 });     
 
-router.post('/submit',(req,res,next)=>{
+router.post('/submit',async(req,res,next)=>{
     try{
         const portId = await Portfolio.find({
             attributes: 'id',            // 포트폴리오 id를 가져옴

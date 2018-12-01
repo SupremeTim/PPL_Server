@@ -45,8 +45,8 @@ db.Portfolio.hasMany(db.Project_Experience, {foreignKey: 'port_id', sourceKey: '
 db.Project_Experience.belongsTo(db.Portfolio, {foreignKey: 'port_id', targetKey: 'id'});
 
 // portfolio 1 : 1 template - 포트폴리오는 하나의 템플릿으로 구성되므로 1:1
-db.Template.hasMany(db.Portfolio, {foreignKey: 'temp_id', sourceKey: 'id'});
-db.Portfolio.belongsTo(db.Template, {foreignKey: 'temp_id', targetKey: 'id'});
+db.Portfolio.hasMany(db.Template, {foreignKey: 'port_id', sourceKey: 'id'});
+db.Template.belongsTo(db.Portfolio, {foreignKey: 'port_id', targetKey: 'id'});
 
 // portfolio 1 : 1 category_header - 포트폴리오 하나는 카테고리 묶음 하나를 갖는다
 // db.Portfolio.hasOne(db.Category_Header, {foreignKey: 'port_id', sourceKey: 'id'});

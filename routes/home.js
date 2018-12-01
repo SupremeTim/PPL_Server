@@ -3,9 +3,9 @@ const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 
 const router = express.Router();
 
-router.get('/', isLoggedIn, (req, res, next) => {
-    res.render('', {
-        name:req.user.name,
+router.get('/',  (req, res, next) => {
+    res.render('index', {
+        //name:req.user.name,
     });
 });
 

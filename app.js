@@ -50,7 +50,7 @@ app.use('/info', infoRouter);
 app.use('/story', storyRouter);
 app.use('/template', templateRouter);
 app.use('/portfolio', portRouter);
-app.use('/searc', searchRouter);
+app.use('/search', searchRouter);
 
 app.use((req, res, next) => {
   const err = new Error('Not Found');
