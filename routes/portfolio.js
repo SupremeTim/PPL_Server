@@ -26,8 +26,9 @@ router.post('/submit',(req,res,next)=>{
         });
         res.send('Success!');                         // 완성 페이지로 넘어가기
     }
-    catch(Exception e) {
-        console.log(e);
+    catch(error) {
+        console.error(error);
+        next(error);
     }
 });
 

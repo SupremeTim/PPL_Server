@@ -44,19 +44,19 @@ router.post('/submit', async (req, res, next) => {
                 user_id: req.user.id,    // 현재 유저가 만든 
             },
             order: [['id', 'DESC']],      // 유저가 만든 포트폴리오 중에 가장 뒤에 있는 것이 방금 만든 포트폴리오이므로
-        });,      // 유저가 만든 포트폴리오 중에 가장 뒤에 있는 것이 방금 만든 포트폴리오이므로
-                     // 검색해서 id 가져오도록 설정해보자!   
+        });      // 유저가 만든 포트폴리오 중에 가장 뒤에 있는 것이 방금 만든 포트폴리오이므로
+        // 검색해서 id 가져오도록 설정해보자!   
         await Info.create({              // form 태그의 name 속성 정해주기
-        profile_image: req.body.url,
-        open_age: req.body.age,
-        intro_comment: req.body.content,
-        port_id: portId,
+            profile_image: req.body.url,
+            open_age: req.body.age,
+            intro_comment: req.body.content,
+            port_id: portId,
         });
         res.redirect('/story');
-        } catch (error) {
+    } catch (error) {
         console.error(error);
         next(error);
-        }
+    }
 });
 
 module.exports = router;
