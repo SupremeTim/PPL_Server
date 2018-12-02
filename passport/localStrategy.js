@@ -17,6 +17,7 @@ module.exports = (passport) => {
                     done(null, exUser);
                 } else {
                     done(null, false, { message: '비밀번호가 일치하지 않습니다.' });
+                    console.log('비밀번호가 틀림!');
                 }
             }
             else {
