@@ -20,15 +20,15 @@ module.exports = (sequelize, DataTypes) => (
         phone: {
             type: DataTypes.STRING(20),
             allowNull: false,
-        },
+        },/*
         birth: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            allowNull: true,
         },
         product: {
             type: DataTypes.INTEGER,
-            allowNull: false,
-        },
+            allowNull: true,
+        },*/
     }, {
             timestamps: true,
             paranoid: true,
