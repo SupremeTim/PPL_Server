@@ -24,10 +24,12 @@ module.exports = (sequelize, DataTypes) => (
         age: {
             type: DataTypes.INTEGER,
             allowNull: true,
+            defaultValue:0,
         },
         product: {
             type: DataTypes.INTEGER,
             allowNull: true,
+            defaultValue:0,
         },
         career: {
             type: DataTypes.BOOLEAN,
