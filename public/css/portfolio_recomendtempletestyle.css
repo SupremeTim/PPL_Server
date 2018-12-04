@@ -1,3 +1,36 @@
+@font-face{
+    font-family:'namsanBL';
+    src:url('../font/namsanBL.TTF');
+}
+@font-face{
+    font-family:'Noto Sans CJK KR Bold';
+    src:url('../font/NOTOSANSCJKKR-BOLD.OTF');
+}
+@font-face{
+    font-family:'Noto Sans CJK KR Black';
+    src:url('../font/NOTOSANSCJKKR-BLACK.OTF');
+}
+@font-face{
+    font-family:'Noto Sans CJK KR Demilight';
+    src:url('../font/NOTOSANSCJKKR-DEMILIGHT.OTF');
+}
+@font-face{
+    font-family:'Noto Sans CJK KR Light';
+    src:url('../font/NOTOSANSCJKKR-LIGHT.OTF');
+}
+@font-face{
+    font-family:'Noto Sans CJK KR Medium';
+    src:url('../font/NOTOSANSCJKKR-MEDIUM.OTF');
+}
+@font-face{
+    font-family:'Noto Sans CJK KR Regular';
+    src:url('../font/NOTOSANSCJKKR-REGULAR.OTF');
+}
+@font-face{
+    font-family:'Noto Sans CJK KR Thin';
+    src:url('../font/NOTOSANSCJKKR-THIN.OTF');
+}
+
 .menu#portfoliiomenu{
     background: #707070;
 }
@@ -63,7 +96,14 @@ p.contents_header{
 }
 
 .backbtn:hover{
-    background-image: url(../icon/portfoliopage_backbutton_on.png);
+     background-image: url(../icon/portfoliopage_backbutton_on.png);
+     border: none;
+     width:120px;
+     cursor: pointer;
+}
+
+.backbtn:active{
+    background-image: url(../icon/portfoliopage_backbutton_click.png);
     border: none;
     width:120px;
     cursor: pointer;
@@ -80,6 +120,13 @@ p.contents_header{
 .nextbtn:hover{
     background-image: url(../icon/portfoliopage_nextbutton_on.png);
     border: none;;
+    width:120px;
+    cursor: pointer;
+}
+
+.nextbtn:active{
+    background-image: url(../icon/portfoliopage_nextbutton_click.png);
+    border: none;
     width:120px;
     cursor: pointer;
 }

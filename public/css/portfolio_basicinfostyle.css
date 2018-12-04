@@ -1,3 +1,36 @@
+@font-face{
+    font-family:'namsanBL';
+    src:url('../font/namsanBL.TTF');
+}
+@font-face{
+    font-family:'Noto Sans CJK KR Bold';
+    src:url('../font/NOTOSANSCJKKR-BOLD.OTF');
+}
+@font-face{
+    font-family:'Noto Sans CJK KR Black';
+    src:url('../font/NOTOSANSCJKKR-BLACK.OTF');
+}
+@font-face{
+    font-family:'Noto Sans CJK KR Demilight';
+    src:url('../font/NOTOSANSCJKKR-DEMILIGHT.OTF');
+}
+@font-face{
+    font-family:'Noto Sans CJK KR Light';
+    src:url('../font/NOTOSANSCJKKR-LIGHT.OTF');
+}
+@font-face{
+    font-family:'Noto Sans CJK KR Medium';
+    src:url('../font/NOTOSANSCJKKR-MEDIUM.OTF');
+}
+@font-face{
+    font-family:'Noto Sans CJK KR Regular';
+    src:url('../font/NOTOSANSCJKKR-REGULAR.OTF');
+}
+@font-face{
+    font-family:'Noto Sans CJK KR Thin';
+    src:url('../font/NOTOSANSCJKKR-THIN.OTF');
+}
+
 .menu#portfoliiomenu{
     background: #707070;
 }
@@ -32,26 +65,41 @@ h1{
     font-size: 25px;
 }
 
-.filebox label {
-    display: inline-block;
-    padding: .5em .75em;
-    color: #999;
-    font-size: inherit;
-    line-height: normal;
-    vertical-align: middle;
-    background-color: #fdfdfd;
-    cursor: pointer;
-    border: 1px solid #ebebeb;
-    border-bottom-color: #e2e2e2;
-    border-radius: .25em;
-    width:100%;
-    max-width:100%;
-}
-
 #holder{
     width: 200px;
     height: 200px;
+    object-fit: contain;
 }
+p{
+    margin:0px;
+}
+
+.filebox  {
+    margin-top: 20px;
+    width:70px; height:20px;
+    padding:10px;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    line-height:20px;
+    background-color: #466bff;
+    cursor: pointer;
+    border: 1px solid #466bff;
+    border-bottom-color: #466bff;
+    border-radius: .25em;
+    font-family: "Noto Sans CJK KR Regular";
+}
+
+.filebox input[type="file"] { /* 파일 필드 숨기기 */
+    position: absolute;
+    width: 0px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip:rect(0,0,0,0); border: 0;
+}
+
 
 .contentlabel2{
     position: absolute;
@@ -89,9 +137,8 @@ textarea::placeholder{
 
 .bottomnav{
     position: absolute;
-    top:1350px;
+    top:1400px;
     left: 44%;
-    margin-bottom: 100px;
 }
 
 .backbtn{
@@ -100,14 +147,9 @@ textarea::placeholder{
     border: none;
     background-size:120px 43px;
     cursor: pointer;
+
+    margin-bottom: 100px;
 }
-/*
-.backbtn:hover{
-    background-image: url(../icon/portfoliopage_backbutton_on.png);
-    border: none;
-    width:120px;
-    cursor: pointer;
-}*/
 
 .nextbtn{
     width: 120px; height: 43px;
@@ -116,11 +158,21 @@ textarea::placeholder{
     background-size:120px 43px;
     cursor: pointer;
     margin-left: 20px;
+    margin-bottom: 100px;
 }
 .nextbtn:hover{
     background-image: url(../icon/portfoliopage_nextbutton_on.png);
     border: none;
     width:120px;
     cursor: pointer;
+    margin-bottom: 100px;
+}
+
+.nextbtn:active{
+    background-image: url(../icon/portfoliopage_nextbutton_click.png);
+    border: none;
+    width:120px;
+    cursor: pointer;
+    margin-bottom: 100px;
 }
 

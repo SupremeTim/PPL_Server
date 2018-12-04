@@ -1,3 +1,36 @@
+@font-face{
+    font-family:'namsanBL';
+    src:url('../font/namsanBL.TTF');
+}
+@font-face{
+    font-family:'Noto Sans CJK KR Bold';
+    src:url('../font/NOTOSANSCJKKR-BOLD.OTF');
+}
+@font-face{
+    font-family:'Noto Sans CJK KR Black';
+    src:url('../font/NOTOSANSCJKKR-BLACK.OTF');
+}
+@font-face{
+    font-family:'Noto Sans CJK KR Demilight';
+    src:url('../font/NOTOSANSCJKKR-DEMILIGHT.OTF');
+}
+@font-face{
+    font-family:'Noto Sans CJK KR Light';
+    src:url('../font/NOTOSANSCJKKR-LIGHT.OTF');
+}
+@font-face{
+    font-family:'Noto Sans CJK KR Medium';
+    src:url('../font/NOTOSANSCJKKR-MEDIUM.OTF');
+}
+@font-face{
+    font-family:'Noto Sans CJK KR Regular';
+    src:url('../font/NOTOSANSCJKKR-REGULAR.OTF');
+}
+@font-face{
+    font-family:'Noto Sans CJK KR Thin';
+    src:url('../font/NOTOSANSCJKKR-THIN.OTF');
+}
+
 .menu#portfoliiomenu{
     background: #707070;
 }
@@ -39,7 +72,7 @@ p.contents_header{
 
 .recreatebtn{
     width: 120px; height: 43px;
-    background-image: url(../icon/portfoliopage_recreatebutton_off.png);
+    background-image: url("../icon/portfoliopage_recreatebutton_off.png");
     border: none;
     background-size:120px 43px;
     cursor: pointer;
@@ -48,7 +81,7 @@ p.contents_header{
 
 .recreatebtn:hover{
     width: 120px; height: 43px;
-    background-image: url(../icon/portfoliopage_recreatebutton_on.png);
+    background-image: url("../icon/portfoliopage_recreatebutton_on.png");
     border: none;
     background-size:120px 43px;
     cursor: pointer;
@@ -57,7 +90,7 @@ p.contents_header{
 
 .recreatebtn:active{
     width: 120px; height: 43px;
-    background-image: url(../icon/portfoliopage_recreatebutton_click.png);
+    background-image: url("../icon/portfoliopage_recreatebutton_click.png");
     border: none;
     background-size:120px 43px;
     cursor: pointer;
@@ -66,7 +99,7 @@ p.contents_header{
 
 .createbtn{
     width: 210px; height: 43px;
-    background-image: url(../icon/portfoliopage_completebutton_off.png);
+    background-image: url("../icon/portfoliopage_completebutton_off.png");
     border: none;
     background-size:210px 43px;
     cursor: pointer;
@@ -75,7 +108,7 @@ p.contents_header{
 
 .createbtn:hover{
     width: 210px; height: 43px;
-    background-image: url(../icon/portfoliopage_completebutton_on.png);
+    background-image: url("../icon/portfoliopage_completebutton_on.png");
     border: none;
     background-size:210px 43px;
     cursor: pointer;
@@ -84,7 +117,7 @@ p.contents_header{
 
 .cancelbtn{
      width: 120px; height: 43px;
-     background-image: url(../icon/portfoliopage_cancelbutton_off.png);
+     background-image: url("../icon/portfoliopage_cancelbutton_off.png");
      border: none;
      background-size:120px 43px;
      cursor: pointer;
@@ -93,7 +126,7 @@ p.contents_header{
 
 .cancelbtn:hover{
     width: 120px; height: 43px;
-    background-image: url(../icon/portfoliopage_cancelbutton_on.png);
+    background-image: url("../icon/portfoliopage_cancelbutton_on.png");
     border: none;
     background-size:120px 43px;
     cursor: pointer;
