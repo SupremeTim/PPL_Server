@@ -12,9 +12,11 @@ html(lang='en')
       // 로그인
       if user && user.id  
         .login_complete
-          img(src='/icon/mainpage_profileicon.png', alt='profileicon')
-          .user_name= user.name +'님'
-          a(href='') 설정
+          img#profileicon(src='../icon/mainpage_profileicon.png', alt='profile')
+          a(href='******')= user.name +'님'
+          |             &nbsp;&nbsp;|&nbsp;&nbsp;
+          a(href='********') 설정
+          |             &nbsp;&nbsp;|&nbsp;&nbsp;
           a(href='/auth/logout') 로그아웃
           //- 디자인 요청!!!
       else

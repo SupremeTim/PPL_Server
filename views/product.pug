@@ -27,7 +27,7 @@ html(lang='en')
       li#searchmenu.menu
         a(href='/search') SEARCH
       li#portfoliiomenu.menu
-        a(href='/portfolio') PORTFOLIO
+        a(href='/make') PORTFOLIO
       li#productmenu.menu
         a(href='/product') PRODUCT
     .background
@@ -42,7 +42,8 @@ html(lang='en')
           | &#xC6D4; 
           b 3,000
           |  &#x20A9;
-        input.selectbutton_eco(type='button')
+          form(action='/product/1' method='post')
+            input.selectbutton_eco(type='submit' value='')
         p.product_info
           | &#xD504;&#xB85C;&#xC81D;&#xD2B8; 2&#xAC1C;
           br
@@ -55,7 +56,8 @@ html(lang='en')
           | &#xC6D4; 
           b 3,500
           |  &#x20A9;
-        input.selectbutton_basic(type='button')
+          form(action='/product/2' method='post')
+            input.selectbutton_basic(type='submit' value='')
         p.product_info
           | &#xD504;&#xB85C;&#xC81D;&#xD2B8; 4&#xAC1C;
           br
@@ -68,7 +70,8 @@ html(lang='en')
           | &#xC6D4; 
           b 5,000
           |  &#x20A9;
-        input.selectbutton_eco(type='button')
+          form(action='/product/3' method='post')
+            input.selectbutton_eco(type='submit' value='')
         p.product_info
           | &#xD504;&#xB85C;&#xC81D;&#xD2B8; 6&#xAC1C;
           br

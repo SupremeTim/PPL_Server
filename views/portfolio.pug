@@ -12,9 +12,11 @@ html
       // 로그인
       if user && user.id  
         .login_complete
-          img(src='../icon/mainpage_profileicon.png', alt='profileicon')
-          .user_name= user.name +'님'
-          a(href='') 설정
+          img#profileicon(src='../icon/mainpage_profileicon.png', alt='profile')
+          a(href='******')= user.name +'님'
+          |             &nbsp;&nbsp;|&nbsp;&nbsp;
+          a(href='********') 설정
+          |             &nbsp;&nbsp;|&nbsp;&nbsp;
           a(href='/auth/logout') 로그아웃
           //- 디자인 요청!!!
       else
@@ -44,5 +46,9 @@ html
         // <img class="portfolioimg" src="../icon/portfoliopage_portfolio3.png" alt="portfolio3">
       .portfolio4
         // <img class="portfolioimg" src="../icon/portfoliopage_portfolio4.png" alt="portfolio4">
-    a(href='/info')
-      img#startbtn(src='../icon/portfoliopage_startbutton_off.png', onmouseover="this.src='../icon/portfoliopage_startbutton_on.png';", onmouseout="this.src='../icon/portfoliopage_startbutton_off.png';", alt='start', title='start')
+    if user.product==0
+      a(href='/product')
+        img#startbtn(src='../icon/portfoliopage_startbutton_off.png', onmouseover="this.src='../icon/portfoliopage_startbutton_on.png';", onmouseout="this.src='../icon/portfoliopage_startbutton_off.png';", alt='start', title='start')
+    else
+      a(href='/info')
+        img#startbtn(src='../icon/portfoliopage_startbutton_off.png', onmouseover="this.src='../icon/portfoliopage_startbutton_on.png';", onmouseout="this.src='../icon/portfoliopage_startbutton_off.png';", alt='start', title='start')
