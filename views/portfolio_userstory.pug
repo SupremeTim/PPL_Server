@@ -120,7 +120,8 @@ html
                   label(for='another_dl') 그 외
                   input#another_dl_(type='text', placeholder='입력하세요...')
           .bottomnav
-            input.backbtn(type='button')
+            a(href='/story/back')
+              input.backbtn(type='button')
             input.nextbtn(type='submit' value='')
       hr
       .project_experience
@@ -132,14 +133,14 @@ html
           .project_form
             form(action='/story/exp', method='post')
               label(for='project_name') 프로젝트 이름
-              input#project_name(type='text')
+              input#project_name(type='text' name='project_name')
               br
               .tomargin
                 label(for='project_info', margin-top='15px') 프로젝트 설명
-                textarea#project_info
+                textarea#project_info(name='project_info')
                 br
               label(for='project_link') 프로젝트 링크
-              input#project_link(type='text', placeholder='ex) Github 링크')
+              input#project_link(type='text', placeholder='ex) Github 링크', name='project_link')
               br
               .tomargin
                 label 첨부파일

@@ -14,12 +14,21 @@ router.get('/temp', isNotLoggedIn, (req, res, next) => {
     res.render('joinpage');
 });
 
-router.get('/check', async (req, res, next) => {              // 중복확인 라우터
+router.post('/check', isNotLoggedIn, async (req, res, next) => {
     try {
+        const { nick } = req.body;
         const exUser = await User.find({ where: { nick } });
         if (exUser) {
             req.flash('joinError', '이미 가입된 아이디입니다.');
-            return res.redirect('/join');
+            console.log('아이디 사용불가능!');
+            return res.render('joinpage', {
+                no: 'not ok',
+            });
+        } else {
+            console.log('아이디 사용가능!');
+            return res.render('joinpage', {
+                yes: 'ok',
+            });
         }
     } catch (error) {
         console.error(error);
@@ -28,24 +37,20 @@ router.get('/check', async (req, res, next) => {              // 중복확인 �
 });
 
 router.post('/join', isNotLoggedIn, async (req, res, next) => {
-    const { name, nick, password, email, phone, /*year*/ } = req.body;
+    const { name, nick, password, email, phone, year } = req.body;
     try {
-        const exUser = await User.find({ where: { nick } });
-        if (exUser) {
-            req.flash('joinError', '이미 가입된 아이디입니다.');
-            return res.redirect('/auth/temp');
-        }
-        //const d = new Date();
-        //const n = d.getFullYear();
-        //const age = n - year;
+        const d = new Date();
+        const n = d.getFullYear();
+        const age = n - year;
         const hash = await bcrypt.hash(password, 12);
+
         await User.create({
             name,
             nick,
             password: hash,
             email,
             phone,
-            //birth: age,
+            age,
         });
         return res.render('loginpage', {
             joinSign: 'ok',

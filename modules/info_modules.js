@@ -24,4 +24,4 @@ module.exports.setPortId = function(port_id) {
 
 module.exports.getPortId = function() {
     return portId;
-}
+};

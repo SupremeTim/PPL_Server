@@ -9,6 +9,10 @@ module.exports.getStory = function() {
     return userStory.pop();
 };
 
+module.exports.spliceStory = function(index) {
+    userStory.splice(index, 1);
+};
+
 module.exports.getAllStory = function() {
     return userStory;
 };

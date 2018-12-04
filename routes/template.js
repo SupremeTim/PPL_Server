@@ -3,16 +3,24 @@ const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 
 const router=express.Router();
 
-router.get('/',(req,res,next)=>{
-    res.render('/template1');
+router.get('/', isLoggedIn, (req,res,next)=>{
+    res.render('portfolio_recommendtemplate', {
+        user: req.user,
+    });
 });     
 
 router.post('/template1',(req,res,next)=>{
     res.redirect('template1');
 });
 
-router.get('/submit',(req,res,next)=>{
-    res.redirect();                         // 완성 페이지로 넘어가기
+router.get('/back', (req,res,next) => {
+    res.redirect(req.session.backURL || '/story')
+});
+
+router.post('/submit',(req,res,next)=>{
+    res.render('portfolio_create', {
+        user: req.user,
+    });
 });
 
 module.exports=router;
