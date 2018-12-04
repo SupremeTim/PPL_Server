@@ -24,6 +24,11 @@ router.post('/exp', (req, res, next) => {
     res.redirect(204, '/story');
 });
 
+router.get('/delete', (req,res,next) => {
+    console.log(document.getElementById('field'));
+    res.redirect(204, '/story');
+});
+
 router.post('/submit', (req, res, next) => {
     console.log(req.body.dev_field);
     setDevField(req.body.dev_field);

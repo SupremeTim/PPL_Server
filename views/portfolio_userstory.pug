@@ -32,17 +32,17 @@ html
     // 메뉴바
     ul.mainmenu
       li#searchmenu.menu
-        a(href='/searchpage') SEARCH
+        a(href='/search') SEARCH
       li#portfoliiomenu.menu
-        a(href='/portfolio') PORTFOLIO
+        a(href='/make') PORTFOLIO
       li#productmenu.menu
         a(href='/product') PRODUCT
     .side
       h1 2. 사용자 스토리
     .contents
-      form
-        p.contents_header 개인 역량
-        .ability
+      p.contents_header 개인 역량
+      .ability
+        form(action='/story/submit', method='post')
           table.develop_field
             tbody
               tr
@@ -119,8 +119,9 @@ html
                   input#another_dl(type='checkbox', name='develop', value='another')
                   label(for='another_dl') 그 외
                   input#another_dl_(type='text', placeholder='입력하세요...')
-      br
-      br
+          .bottomnav
+            input.backbtn(type='button')
+            input.nextbtn(type='submit' value='')
       hr
       .project_experience
         p.contents_header 프로젝트 경험
@@ -131,24 +132,20 @@ html
           .project_form
             form(action='/story/exp', method='post')
               label(for='project_name') 프로젝트 이름
-              input#project_name(type='text' name='project_name')
+              input#project_name(type='text')
               br
               .tomargin
                 label(for='project_info', margin-top='15px') 프로젝트 설명
-                textarea#project_info(name='project_info')
+                textarea#project_info
                 br
               label(for='project_link') 프로젝트 링크
-              input#project_link(type='text', placeholder='ex) Github 링크' name='project_link')
+              input#project_link(type='text', placeholder='ex) Github 링크')
               br
               .tomargin
                 label 첨부파일
                 input(type='file')
                 h6#project_img_ex 프로젝트 대표 이미지로 사용될 이미지를 첨부하세요.
               input.project_storebtn(type='submit', value='')
-          input.project_removebtn(type='button', onclick='remove_div(this)')
+          a(href='/story/delete')
+            input.project_removebtn(type='button', onclick='remove_div(this)')
         #field
-      .bottomnav
-        a(href='/story/back')
-          input.backbtn(type='button')
-        a(href='/story/submit')
-          input.nextbtn(type='submit' value='')
