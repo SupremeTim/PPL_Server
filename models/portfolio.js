@@ -13,5 +13,31 @@ module.exports = (sequelize, DataTypes) => (
             allowNull: true,
             defaultValue: "",
         },
+        dev_field: {
+            type: DataTypes.STRING(50),
+            allowNull: true,
+            defaultValue: '',
+        },
+        dev_lang: {
+            type: DataTypes.STRING(50),
+            allowNull: true,
+            defaultValue: '',
+        },
+        spe_field: {
+            type: DataTypes.STRING(50),
+            allowNull: true,
+            defaultValue: '',
+        },
+        createdAt: {
+            type: DataTypes.DATE,
+            defaultValue: sequelize.literal('now()'),
+        },
+        updatedAt: {
+            type: DataTypes.DATE,
+            defaultValue: sequelize.literal('now()'),
+        },
+    }, {
+        timestamps: true,
+        paranoid: true,
     })
 );

@@ -16,9 +16,16 @@ module.exports = (sequelize, DataTypes) => (
             type: DataTypes.STRING(200),
             allowNull: true,
         },
-        pro_facebook: {
-            type: DataTypes.STRING(45),
-            allowNull: true,
+        createdAt: {
+            type: DataTypes.DATE,
+            defaultValue: sequelize.literal('now()'),
         },
-    }, {})
+        updatedAt: {
+            type: DataTypes.DATE,
+            defaultValue: sequelize.literal('now()'),
+        },
+    }, {
+        timestamps: true,
+        paranoid: true,
+    })
 );

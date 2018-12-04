@@ -20,15 +20,31 @@ module.exports = (sequelize, DataTypes) => (
         phone: {
             type: DataTypes.STRING(20),
             allowNull: false,
-        },/*
-        birth: {
+        },
+        age: {
             type: DataTypes.INTEGER,
             allowNull: true,
         },
         product: {
             type: DataTypes.INTEGER,
             allowNull: true,
-        },*/
+        },
+        career: {
+            type: DataTypes.BOOLEAN,
+            allowNull: true,
+        },
+        univ: {
+            type: DataTypes.STRING(20),
+            allowNull: true,
+        },
+        createdAt: {
+            type: DataTypes.DATE,
+            defaultValue: sequelize.literal('now()'),
+        },
+        updatedAt: {
+            type: DataTypes.DATE,
+            defaultValue: sequelize.literal('now()'),
+        },
     }, {
             timestamps: true,
             paranoid: true,

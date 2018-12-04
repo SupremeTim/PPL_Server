@@ -10,7 +10,9 @@ router.get('/',  (req, res, next) => {
 });
 
 router.get('/make', isLoggedIn, (req, res, next) => {
-    res.redirect('/info');
+    res.render('portfolio', {
+        user:req.user,
+    });
 });
 
 router.get('/search', (req, res, next) => {
@@ -19,6 +21,10 @@ router.get('/search', (req, res, next) => {
 
 router.get('/product', isLoggedIn, (req, res, next) => {
     //res.render('',{});
+});
+
+router.get('/template',(req,res,next)=>{
+    res.render('template1',{});
 });
 
 module.exports = router;

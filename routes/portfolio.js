@@ -7,7 +7,7 @@ router.get('/',(req,res,next)=>{
     res.render('',{
         name:req.user.name,
     });
-});     
+});
 
 router.post('/submit',async(req,res,next)=>{
     try{

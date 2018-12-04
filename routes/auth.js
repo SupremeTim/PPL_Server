@@ -25,14 +25,15 @@ router.get('/check', async (req, res, next) => {              // 중복확인 �
         console.error(error);
         return next('error');
     }
-})
+});
+
 router.post('/join', isNotLoggedIn, async (req, res, next) => {
     const { name, nick, password, email, phone, /*year*/ } = req.body;
     try {
         const exUser = await User.find({ where: { nick } });
         if (exUser) {
             req.flash('joinError', '이미 가입된 아이디입니다.');
-            return res.redirect('/join');
+            return res.redirect('/auth/temp');
         }
         //const d = new Date();
         //const n = d.getFullYear();

@@ -1,7 +1,7 @@
 html
   head
-    link(href='../css/mainstyle.css?var=1', type='text/css', rel='stylesheet')
-    link(href='../css/joinstyle.css?var=1', type='text/css', rel='stylesheet')
+    link(href='/css/mainstyle.css?var=1', type='text/css', rel='stylesheet')
+    link(href='/css/joinstyle.css?var=1', type='text/css', rel='stylesheet')
     script(type='text/javascript').
       function passwordCheck(){
         var password = document.getElementById("join_pw").value;
@@ -44,7 +44,7 @@ html
     .top
       // ppl logo
       a(href='/')
-        img#ppl_home(src='../icon/ppl_logo.png', alt='ppl')
+        img#ppl_home(src='/icon/ppl_logo.png', alt='ppl')
       // 로그인
       .login
         a(href='/auth') &#xB85C;&#xADF8;&#xC778; / &#xD68C;&#xC6D0;&#xAC00;&#xC785;
@@ -53,7 +53,7 @@ html
       li#searchmenu.menu
         a(href='/search') SEARCH
       li#portfoliiomenu.menu
-        a(href='/portfolio') PORTFOLIO
+        a(href='/make') PORTFOLIO
       li#productmenu.menu
         a(href='/product') PRODUCT
     .joinbox
