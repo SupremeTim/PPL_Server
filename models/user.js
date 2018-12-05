@@ -2,24 +2,24 @@ module.exports = (sequelize, DataTypes) => (
     sequelize.define('user', {
         name: {
             type: DataTypes.STRING(20),
-            allowNull: false,
+            allowNull: true,
         },
         nick: { // 로그인 시 입력하는 아이디
             type: DataTypes.STRING(15),
-            allowNull: false,
+            allowNull: true,
             unique: true,
         },
         password: {
             type: DataTypes.STRING(100),
-            allowNull: false,
+            allowNull: true,
         },
         email: {
             type: DataTypes.STRING(45),
-            allowNull: false,
+            allowNull: true,
         },
         phone: {
             type: DataTypes.STRING(20),
-            allowNull: false,
+            allowNull: true,
         },
         age: {
             type: DataTypes.INTEGER,

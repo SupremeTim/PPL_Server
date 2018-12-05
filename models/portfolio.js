@@ -6,17 +6,17 @@ module.exports = (sequelize, DataTypes) => (
         },
         port_views: {
             type: DataTypes.INTEGER,
-            allowNull: false,
-            defaultValue:0,
+            allowNull: true,
+            defaultValue: 0,
         },
         port_name: {
             type: DataTypes.STRING(20),
             allowNull: true,
             defaultValue: "",
         },
-        port_img:{
-            type:DataTypes.STRING(100),
-            allowNull:true,
+        port_img: {
+            type: DataTypes.STRING(100),
+            allowNull: true,
         },
         dev_field: {
             type: DataTypes.STRING(50),
@@ -42,7 +42,7 @@ module.exports = (sequelize, DataTypes) => (
             defaultValue: sequelize.literal('now()'),
         },
     }, {
-        timestamps: true,
-        paranoid: true,
-    })
+            timestamps: true,
+            paranoid: true,
+        })
 );

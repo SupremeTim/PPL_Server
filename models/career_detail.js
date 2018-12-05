@@ -2,15 +2,15 @@ module.exports = (sequelize, DataTypes) => (
     sequelize.define('career_detail', {
         com_name: {
             type: DataTypes.STRING(50),
-            allowNull: false,
+            allowNull: true,
         },
         com_term: {
             type: DataTypes.STRING(10),
-            allowNull: false,
+            allowNull: true,
         },
         com_comment: {
             type: DataTypes.STRING(100),
-            allowNull: false,
+            allowNull: true,
         },
         createdAt: {
             type: DataTypes.DATE,

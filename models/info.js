@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => (
         },
         open_age: {
             type: DataTypes.BOOLEAN,
-            allowNull: false,
+            allowNull: true,
         },
         intro_comment: {
             type:DataTypes.STRING(100),
