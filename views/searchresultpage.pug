@@ -33,21 +33,17 @@ html
         a(href='/product') PRODUCT
     .search_top
       .search_bar
-        | &#xC5F4;&#xC815;, Android 
-        a(href='searchpage.html')
+        | 열정, Android 
+        a(href='/search')
           img.cancelbtn(src='../icon/searchpage_cancelbutton.png')
     .portfolio_box
-      .result_portfolio
-        .portfolio_info
-          .pic
-            img.pic-image(src='../icon/portfoliopage_portfolio1.png')
-            span.pic-caption.bottom-to-top
-              h3 &#xC5F4;&#xC815;&#xC801;&#xC778; &#xACBD;&#xB825;&#xC9C1;, &#xBC14;&#xB85C; &#xC800;&#xC785;&#xB2C8;&#xB2E4;.
-        |             &#xC591;&#xC2DC;&#xC5F0;, 22&#xC138;, &#xC548;&#xB4DC;&#xB85C;&#xC774;&#xB4DC;&#xAC1C;&#xBC1C;&#xC790;, iOT
-      .result_portfolio
-        .portfolio_info
-        |             &#xC870;&#xC778;&#xD0DD;, 25&#xC138;, &#xC548;&#xB4DC;&#xB85C;&#xC774;&#xB4DC;
-      .result_portfolio
-        .portfolio_info
-      .result_portfolio
-        .portfolio_info
+      if results
+        for result in results
+          .result_portfolio
+           .portfolio_info
+             .pic
+              img.pic-image(src='../icon/portfoliopage_portfolio1.png')
+              span.pic-caption.bottom-to-top
+                h3 열정적인 경력직, 바로 저입니다.
+           h4=`${result.user.name}, ${result.user.age}세, ${result.spe_field} 부문, ${result.dev_field} 개발자`
+      else

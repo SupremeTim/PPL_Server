@@ -9,84 +9,50 @@ router.get('/', isLoggedIn, (req, res, next) => {
 */
 router.post('/submit', async (req, res, next) => {
     try {
-        const { dev_field, spe_field, career, minAge, maxAge } = req.body;
-        /*
-    if (spe_field) {
-        for (var s in spe_field) {
-            const img = await Portfolio.findAll({
-                attributes: ['port_img'],
-                where: {
-                    spe_field: {
-                        [Op.like]: `%${s}%`,
-                    }
-                },
-            });
-        }
-    }
+        const { dev_field, spe_field, career, minAge, maxAge, searchkeyword } = req.body;
+        var min = 0;
+        var max = 100;      // 기본 나이 범위
+        var sign = 0;     // 기본 신입 검색 가정
+        var dev='';
+        var spe='';         // 기본 모두 역량 검색 가정
+        if (career === 'yes') sign = 1;
+        if (maxAge && minAge) {
+            min = parseInt(minAge);
+            max = parseInt(maxAge);
+        } 
+        if(spe_field) spe=spe_field;
+        if(dev_field) dev=dev_field;        // 하나만 선택가능한 것으로 가정
 
-    if (dev_field) {
-        for (var s in dev_field) {
-            const img = await Portfolio.findAll({
-                attributes: ['port_img'],
+        const port = await Portfolio.findAll({
+            include: {
+                model: User,
+                //attributes:['name','age'],
                 where: {
-                    dev_field: {
-                        [Op.like]: `%${s}%`,
-                    }
+                    career: sign,
+                    [Op.and]: [{ age: { [Op.gt]: min } }, { age: { [Op.lt]: max } }],
+                }
+            },
+            where: {
+                spe_field: {
+                    [Op.like]: `%${spe}%`
                 },
-            });
-        }
-    }
-
-    if (career==='yes') {
-        const id = await User.findAll({
-            attributes: ['id'],
-            where: {
-                career: 1,
-            },
-        });
-        const img = await Portfolio.findAll({
-            attributes: ['port_img'],
-            where: {
-                user_id: id,
-            },
-        });
-    } else if (career === 'no') {
-        const id = await User.findAll({
-            attributes: ['id'],
-            where: {
-                career: 0,
-            },
-        });
-        const img = await Portfolio.findAll({
-            attributes: ['port_img'],
-            where: {
-                user_id: id,
-            },
-        });
-    }
-    */
-        if (minAge && maxAge) {
-            const temp1 = parseInt(minAge);
-            const temp2 = parseInt(maxAge);
-            const user = await User.findAll({
-                attributes: ['id'],
-                where: {
-                    [Op.and]: [{ age: { [Op.gt]: temp1 } }, { age: { [Op.lt]: temp2 } }],
+                dev_field: {
+                    [Op.like]: `%${dev}%`
                 },
-            });
-            //console.log(user[0].id);
-            for (var i in user) {
-                const img = await Portfolio.findAll({
-                    attributes: ['port_img'],
-                    where: {
-                        user_id: user[i].id,
-                    },
-                });
+                port_name: {
+                    [Op.like]: `%${searchkeyword}%`
+                },
             }
-        }
+        });
 
+        /*
+        for (var i in port){
+            console.log(port[i]);
+        }*/
+            
         return res.render('searchresultpage', {
-
+            results:port,
+            user:req.user,
         });
     } catch (error) {
         console.error(error);
