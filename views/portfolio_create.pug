@@ -16,13 +16,12 @@ html(lang='en')
       // ppl logo
       a(href='/')
         img#ppl_home(src='/icon/ppl_logo.png', alt='ppl')
-      // 로그인
       if user && user.id  
         .login_complete
           img#profileicon(src='../icon/mainpage_profileicon.png', alt='profile')
-          a(href='******')= user.name +'님'
+          a(href='/mypage')= user.name +'님'
           |             &nbsp;&nbsp;|&nbsp;&nbsp;
-          a(href='********') 설정
+          a(href='/mypage') 설정
           |             &nbsp;&nbsp;|&nbsp;&nbsp;
           a(href='/auth/logout') 로그아웃
           //- 디자인 요청!!!
