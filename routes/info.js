@@ -6,7 +6,7 @@ const { isLoggedIn, isNotLoggedIn, upload } = require('./middlewares');
 
 const { setUserCareer, getUserCareer } = require('../modules/user_modules');
 const { setUserId, getUserId } = require('../modules/port_modules');
-const { setOpenAge, setIntroComment, getOpenAge, getIntroComment } = require('../modules/info_modules');
+const { setOpenAge, setIntroComment, getOpenAge, getIntroComment,setProfileImage } = require('../modules/info_modules');
 const router = express.Router();
 
 router.get('/', isLoggedIn, (req, res, next) => {

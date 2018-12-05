@@ -23,8 +23,8 @@ router.post('/exp', (req, res, next) => {
 });
 
 router.post('/delete', (req,res,next) => {
-    console.log(getAllStory());
     spliceStory(req.body.project_index);
+    console.log(getAllStory());
     res.redirect(204, '/story'); 
 });
 
