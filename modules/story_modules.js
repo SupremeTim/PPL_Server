@@ -1,7 +1,7 @@
 var userStory = new Array();
 
-module.exports.setStory = function(name, info, link) {
-    var storyObject = { name, info, link };
+module.exports.setStory = function(name, info, link, url) {
+    var storyObject = { name, info, link, url};
     userStory.push(storyObject);
 };
 

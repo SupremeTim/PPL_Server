@@ -1,5 +1,6 @@
 var openAge;
 var introComment;
+var profileImage;
 var portId;
 
 module.exports.setOpenAge = function(open_age) {
@@ -24,4 +25,12 @@ module.exports.setPortId = function(port_id) {
 
 module.exports.getPortId = function() {
     return portId;
+};
+
+module.exports.setProfileImage = function(image) {
+    profileImage = image;
+};
+
+module.exports.getProfileImage = function() {
+    return profileImage;
 };

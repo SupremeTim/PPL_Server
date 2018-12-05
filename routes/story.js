@@ -2,7 +2,7 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
-const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
+const { isLoggedIn, isNotLoggedIn,upload } = require('./middlewares');
 
 const { setUserCareer, getUserCareer } = require('../modules/user_modules');
 const { setOpenAge, setIntroComment, getOpenAge, getIntroComment } = require('../modules/info_modules');
@@ -17,25 +17,15 @@ router.get('/', isLoggedIn, async(req, res, next) => {
 });
 
 router.post('/exp', (req, res, next) => {
-    setStory(req.body.project_name, req.body.project_info, req.body.project_link);
+    setStory(req.body.project_name, req.body.project_info, req.body.project_link, req.body.url);
     console.log(getAllStory());
     res.redirect(204, '/story');
 });
 
-router.get('/delete', (req,res,next) => {
-    const list = getAllStory();
-    const item = { name: req.param.project_name, info: req.param.project_info, link: req.param.project_link };
-    console.log(item);
-    var i;
-    for (i = 0; i < list.length; i++)
-    {
-        if (list[i] == item)
-            break;
-    }
-    console.log(i);
-    spliceStory(i);
+router.post('/delete', (req,res,next) => {
     console.log(getAllStory());
-    res.render(204, '/story'); 
+    spliceStory(req.body.project_index);
+    res.redirect(204, '/story'); 
 });
 
 router.get('/back', (req,res,next) => {
@@ -43,6 +33,7 @@ router.get('/back', (req,res,next) => {
 });
 
 router.post('/submit', (req, res, next) => {
+    console.log(req.body);
     setDevField(req.body.dev_field);
     setSpeField(req.body.spe_field);
     setDevLang(req.body.dev_lang);
@@ -52,6 +43,19 @@ router.post('/submit', (req, res, next) => {
     res.render('portfolio_recommendtemplate', {
         user: req.uesr,
     });
+});
+
+//----------이미지 업로드-------------
+fs.readdir('uploads', (error) => {
+    if (error) {
+        console.log('uploads 폴더가 없어 uploads 폴더를 생성합니다.');
+        fs.mkdirSync('uploads');
+    }
+});
+
+router.post('/img', isLoggedIn, upload.single('img'), (req, res) => {
+    console.log(req.file);
+    res.json({ url: `/img/${req.file.filename}`});
 });
 
 module.exports = router;

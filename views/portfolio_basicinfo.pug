@@ -69,35 +69,31 @@ html
       // 파일 첨부
       #status  
       #holder
-        img(src='/icon/portfoliopage_profilebox.png', alt='profilebox', width='200px', height='200px')
-      p
-        input(type='file')
+          img#img-preview(src='/icon/portfoliopage_profilebox.png', alt='profilebox', width='200px', height='200px')
+          input#img-url(type='hidden' name='url')
+          input#img(type='file' accept='image/*')
       script.
-        var upload = document.getElementsByTagName('input')[0],
-        holder = document.getElementById('holder'),
-        state = document.getElementById('status');
-        if (typeof window.FileReader === 'undefined') {
-        state.className = 'fail';
-        } else {
-        state.className = 'success';
-        state.innerHTML = '';
+        if (document.getElementById('img')) {
+          document.getElementById('img').addEventListener('change', function(e) {
+            var formData = new FormData();
+            console.log(this, this.files);
+            formData.append('img', this.files[0]);
+            var xhr = new XMLHttpRequest();
+            xhr.onload = function() {
+              if (xhr.status == 200) {
+                var url = JSON.parse(xhr.responseText).url;
+                document.getElementById('img-url').value = url;
+                document.getElementById('img-preview').src = url;
+                document.getElementById('img-preview').style.display = inline;
+              }
+              else {
+                console.error(xhr.responseText);
+              }
+            };
+            xhr.open('POST', '/info/img');
+            xhr.send(formData);
+          });
         }
-        upload.onchange = function (e) {
-        e.preventDefault();
-        var file = upload.files[0],
-        reader = new FileReader();
-        reader.onload = function (event) {
-        var img = new Image();
-        img.src = event.target.result;
-        if (img.width > 560) { // holder width
-        img.width = 560;
-        }
-        holder.innerHTML = '';
-        holder.appendChild(img);
-        };
-        reader.readAsDataURL(file);
-        return false;
-        };
     .contentlabel2
       | 나이 공개 여부
       br

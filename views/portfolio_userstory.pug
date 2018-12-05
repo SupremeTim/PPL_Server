@@ -5,15 +5,30 @@ html
     link(href='/css/portfolio_userstorystyle.css?var=1', type='text/css', rel='stylesheet')
     script(type='text/javascript').
       function add_div(){
-      var div = document.createElement('div');
-      div.innerHTML = document.getElementById('project_group').innerHTML;
-      document.getElementById('field').appendChild(div);
+        var div = document.createElement('div');
+        div.innerHTML = document.getElementById('project_group').innerHTML;
+        document.getElementById('field').appendChild(div);
+        setProjectIndex();
       }
       function remove_div(obj){
-      document.getElementById('field').removeChild(obj.parentNode);
+        document.getElementById('field').removeChild(obj.parentNode);
+        submitIndex();
+      }
+      function mySubmit(){
+        document.abilityForm.action='/story/submit';
+        document.abilityForm.submit();
+      }
+      var projectIndex = 0;
+      function setProjectIndex(){
+        document.getElementById('project_index').value=projectIndex;
+        projectIndex++;
+      }
+      function submitIndex(){
+        document.projectForm.action = '/story/delete';
+        document.projectForm.submit();
       }
     title userstory
-  body
+  body(onload='setProjectIndex()')
     .top
       // ppl logo
       a(href='/')
@@ -44,7 +59,7 @@ html
     .contents
       p.contents_header 개인 역량
       .ability
-        form(action='/story/submit', method='post')
+        form(method='post', name='abilityForm')
           table.develop_field
             tbody
               tr
@@ -121,19 +136,16 @@ html
                   input#another_dl(type='checkbox', name='develop', value='another')
                   label(for='another_dl') 그 외
                   input#another_dl_(type='text', placeholder='입력하세요...')
-          .bottomnav
-            a(href='/story/back')
-              input.backbtn(type='button')
-            input.nextbtn(type='submit' value='')
+      br
+      br
       hr
       .project_experience
         p.contents_header 프로젝트 경험
         h5 +버튼을 눌러서 프로젝트를 추가해주세요!
         input.addprojectbtn(type='button', onclick='add_div()')
-        #project_group
-          // style="display:none">
+        #project_group(style='display:none')
           .project_form
-            form(action='/story/exp', method='post')
+            form(action='/story/exp', method='post', name='projectForm')
               label(for='project_name') 프로젝트 이름
               input#project_name(type='text' name='project_name')
               br
@@ -142,13 +154,39 @@ html
                 textarea#project_info(name='project_info')
                 br
               label(for='project_link') 프로젝트 링크
-              input#project_link(type='text', placeholder='ex) Github 링크', name='project_link')
+              input#project_link(type='text', placeholder='ex) Github 링크' name='project_link')
               br
               .tomargin
                 label 첨부파일
-                input(type='file')
+                input#img-url(type='hidden' name='url')
+                input#img(type='file' accept='image/*')
                 h6#project_img_ex 프로젝트 대표 이미지로 사용될 이미지를 첨부하세요.
               input.project_storebtn(type='submit', value='')
-          a(href='/story/delete')
-            input.project_removebtn(type='button', onclick='remove_div(this)')
+              #project_indexbox(style='display:none')
+                input#project_index(type='text', name='project_index', style='display:none')
+              script.
+                if (document.getElementById('img')) {
+                  document.getElementById('img').addEventListener('change', function(e) {
+                  var formData = new FormData();
+                  console.log(this, this.files);
+                  formData.append('img', this.files[0]);
+                  var xhr = new XMLHttpRequest();
+                  xhr.onload = function() {
+                    if (xhr.status == 200) {
+                      var url = JSON.parse(xhr.responseText).url;
+                      document.getElementById('img-url').value = url;
+                    }
+                    else {
+                      console.error(xhr.responseText);
+                    }
+                  };
+                  xhr.open('POST', '/story/img');
+                  xhr.send(formData);
+                });
+                }
+          input#project_removebtn(type='button', onclick='remove_div(this)')
         #field
+      .bottomnav
+        a(href='/story/back')
+          input.backbtn(type='button')
+        input.nextbtn(type='button', value='', onclick='mySubmit()')
