@@ -22,25 +22,14 @@ router.post('/exp', isLoggedIn, (req, res, next) => {
     res.redirect(204, '/story');
 });
 
-router.post('/delete', (req, res, next) => {
-    spliceStory(req.body.project_index);
-    console.log(getAllStory());
-    res.redirect(204, '/story');
-});
-
 router.get('/back', isLoggedIn, (req, res, next) => {
     res.redirect(req.session.backURL || '/info')
 });
 
 router.post('/submit', isLoggedIn, (req, res, next) => {
-    console.log(req.body);
-    console.log(req.user);
     setDevField(req.body.dev_field);
     setSpeField(req.body.spe_field);
     setDevLang(req.body.dev_lang);
-    console.log(getDevField());
-    console.log(getSpeField());
-    console.log(getDevLang());
     res.render('portfolio_recommendtemplate', {
         user: req.user,
     });
