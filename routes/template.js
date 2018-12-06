@@ -1,26 +1,32 @@
-const express=require('express');
+const express = require('express');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 
-const router=express.Router();
+const router = express.Router();
 
-router.get('/', isLoggedIn, (req,res,next)=>{
+router.get('/', isLoggedIn, (req, res, next) => {
     res.render('portfolio_recommendtemplate', {
         user: req.user,
     });
-});     
+});
 
-router.post('/template1',(req,res,next)=>{
+router.post('/template1', (req, res, next) => {
     res.redirect('template1');
 });
 
-router.get('/back', (req,res,next) => {
+router.get('/back', isLoggedIn, (req, res, next) => {
     res.redirect(req.session.backURL || '/story')
 });
 
-router.post('/submit',(req,res,next)=>{
+router.post('/submit', isLoggedIn, (req, res, next) => {
     res.render('portfolio_create', {
         user: req.user,
     });
 });
 
-module.exports=router;
+router.get('/select', isLoggedIn, (req, res, next) => {
+    res.render('selecttemplatepage', {
+        user: req.user,
+    });
+});
+
+module.exports = router;

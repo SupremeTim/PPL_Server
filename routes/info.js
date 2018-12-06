@@ -17,7 +17,7 @@ router.get('/', isLoggedIn, (req, res, next) => {
 });
 
 
-router.post('/submit', isLoggedIn, async (req, res, next) => {
+router.get('/submit', isLoggedIn, async (req, res, next) => {
     setOpenAge(req.body.age_open);
     setIntroComment(req.body.introduceself);
     setUserCareer(req.body.career)

@@ -1,13 +1,29 @@
 const express = require('express');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
-const { User } = require('../models');
+const { User, Portfolio } = require('../models');
 
 const router = express.Router();
 
-router.get('/', isLoggedIn, (req, res, next) => {
-    res.render('mypage', {
-        user: req.user,
-    });
+router.get('/', isLoggedIn, async (req, res, next) => {
+    try {
+        const port = await Portfolio.findAll({
+            include: {
+                model: User,
+                where: {
+                    id: req.user.id,
+                }
+            }
+        });
+        console.log(port);
+        return res.render('mypage', {
+            results: port,
+            user: req.user,
+        });
+
+    } catch (error) {
+        console.log(error);
+        return next('error');
+    }
 });
 
 router.post('/change', isLoggedIn, async (req, res, next) => {

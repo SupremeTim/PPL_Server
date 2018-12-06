@@ -33,12 +33,12 @@ html
       .side
         h1 3. 템플릿 추천
       .contents
-        p.contents_header 양시연님! 이런 템플릿을 추천드려요.
+        p.contents_header=`${user.name}님! 이런 템플릿을 추천드려요.`
         #templete1
         #templete2
         br
         |                 템플릿이 마음에 안드시나요?
-        a(href='')
+        a(href='/template/select')
           u 템플릿 더 보러가기>
       .bottomnav
         a(href='/template/back')

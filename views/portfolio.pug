@@ -2,7 +2,7 @@ html
   head
     meta(charset='UTF-8')
     link(href='../css/mainstyle.css?var=2', type='text/css', rel='stylesheet')
-    link(href='../css/portfoliostyle.css', type='text/css', rel='stylesheet')
+    link(href='../css/portfoliostyle.css?var=1', type='text/css', rel='stylesheet')
     title portfolio
   body
     .top
@@ -35,17 +35,27 @@ html
       | 표현하고 싶으세요?
     #pfsp.pfmenuphrase 우리 서비스 PPL을 통해 당신을 PPL 해보세요.
     .portfolioview
-      .portfolio1
-        img.portfolioimg(src='../icon/portfoliopage_portfolio1.png', alt='portfolio1')
+      .pic
+        img.pic-image(src='../icon/portfoliopage_portfolio1.png')
+        span.pic-caption.bottom-to-top
+          br
+          br
+          p NAME : &#xC5EC;&#xC720;&#xB86D;&#xC9C0;&#xB9CC;, &#xC5B4;&#xCA4C;&#xAD6C; 
+          br
+          br
+          br
+          a(href='')  view portfolio
       .portfolio2
         // <img class="portfolioimg" src="../icon/portfoliopage_portfolio2.png" alt="portfolio2">
       .portfolio3
         // <img class="portfolioimg" src="../icon/portfoliopage_portfolio3.png" alt="portfolio3">
       .portfolio4
         // <img class="portfolioimg" src="../icon/portfoliopage_portfolio4.png" alt="portfolio4">
-    if user.product==0
+  if user.product==0      
+    .startbtn
       a(href='/product')
-        img#startbtn(src='../icon/portfoliopage_startbutton_off.png', onmouseover="this.src='../icon/portfoliopage_startbutton_on.png';", onmouseout="this.src='../icon/portfoliopage_startbutton_off.png';", alt='start', title='start')
-    else
+        img#startbtn(src='../icon/portfoliopage_startbutton_off.png', onmouseover="this.src='../icon/portfoliopage_startbutton_on.png';", onmouseout="this.src='../icon/portfoliopage_startbutton_off.png';", alt='start', title='start')    
+  else
+    .startbtn
       a(href='/info')
         img#startbtn(src='../icon/portfoliopage_startbutton_off.png', onmouseover="this.src='../icon/portfoliopage_startbutton_on.png';", onmouseout="this.src='../icon/portfoliopage_startbutton_off.png';", alt='start', title='start')

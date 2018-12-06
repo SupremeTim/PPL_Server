@@ -3,15 +3,38 @@ html
     meta(charset='UTF-8')
     link(href='/css/mainstyle.css?var=2', type='text/css', rel='stylesheet')
     link(href='/css/portfolio_basicinfostyle.css', type='text/css', rel='stylesheet')
-    script(language='javascript').
-      //자기소개 글자수 제한 체크
+    script.
       function len_chk() {
-      var frm = document.insertFrm.introduceself;
-      if (frm.value.length > 100) {
-      alert("자기소개의 글자수는 100자로 제한됩니다.");
-      frm.value = frm.value.substring(0, 100);
-      frm.focus();
+        var frm = document.insertFrm.introduceself;
+        if (frm.value.length > 100) {
+          alert("자기소개의 글자수는 100자로 제한됩니다.");
+          frm.value = frm.value.substring(0, 100);
+          frm.focus();
+        }
       }
+      function len_chk2() {
+        var frm = document.insertFrm.introduceself;
+        if (frm.value.length > 40) {
+          alert("경험소개의 글자수는 40자로 제한됩니다.");
+          frm.value = frm.value.substring(0, 40);
+          frm.focus();
+        }
+      }
+      function visibleCareer(){
+        var career_name = document.getElementById('career_name');
+        var career_duration = document.getElementById('career_duration');
+        var career_info = document.getElementById('career_info');
+        career_name.disabled = false;
+        career_duration.disabled = false;
+        career_info.disabled = false;
+      }
+      function invisibleCareer(){
+        var career_name = document.getElementById('career_name');
+        var career_duration = document.getElementById('career_duration');
+        var career_info = document.getElementById('career_info');
+        career_name.disabled = true;
+        career_duration.disabled = true;
+        career_info.disabled = true;
       }
     title basicinfo
   body
@@ -34,18 +57,7 @@ html
       else
         .login
           a(href='/auth') 로그인 / 회원가입// 로그인
-      if user && user.id  
-        .login_complete
-          img#profileicon(src='../icon/mainpage_profileicon.png', alt='profile')
-          a(href='******')= user.name +'님'
-          |             &nbsp;&nbsp;|&nbsp;&nbsp;
-          a(href='********') 설정
-          |             &nbsp;&nbsp;|&nbsp;&nbsp;
-          a(href='/auth/logout') 로그아웃
-          //- 디자인 요청!!!
-      else
-        .login
-          a(href='/auth') 로그인 / 회원가입
+      
     // 메뉴바
     ul.mainmenu
       li#searchmenu.menu
@@ -81,8 +93,10 @@ html
       #status  
       #holder
           img#img-preview(src='/icon/portfoliopage_profilebox.png', alt='profilebox', width='200px', height='200px')
-          input#img-url(type='hidden' name='url')
-          input#img(type='file' accept='image/*')
+      .filebox
+        p
+          label(for='file_btn') &#xD30C;&#xC77C; &#xC120;&#xD0DD;
+          input#file_btn(type='file')
       script.
         if (document.getElementById('img')) {
           document.getElementById('img').addEventListener('change', function(e) {
@@ -112,28 +126,38 @@ html
       |         경력 사항 
       br
       br
-      |         간단한 소개
+    .contents2
+      label
+        input(type='radio', name='age_open', value='open')
+        | &#xACF5;&#xAC1C;
+      label
+        input(type='radio', name='age_open', value='close')
+        | &#xBE44;&#xACF5;&#xAC1C;
       br
       br
-    form(action='/info/submit', method='post')
-      .contents2
-        label
-          input(type='radio', name='age_open', value='1')
-          | 공개
-        label
-          input(type='radio', name='age_open', value='0')
-          | 비공개
+      label
+        input(type='radio', name='career', value='new', onclick='invisibleCareer()')
+        | &#xC2E0;&#xC785;
+      label
+        input(type='radio', name='career', value='old', onclick='visibleCareer()')
+        | &#xACBD;&#xB825;
+      .career_box(disabled='true')
+        | &#xACBD;&#xB825; &#xC774;&#xB984;: 
+        input#career_name(type='text', disabled='true')
         br
+        |             &#xACBD;&#xB825; &#xAE30;&#xAC04;: 
+        input#career_duration(type='text', disabled='true')
         br
-        label
-          input(type='radio', name='career', value='1')
-          | 신입
-        label
-          input(type='radio', name='career', value='0')
-          | 경력
-        br
-        br
+        |             &#xACBD;&#xB825; &#xC18C;&#xAC1C;: 
+        textarea#career_info(placeholder='경력에 대한 간단한 소개를 해주세요.(40자 이내)', onkeyup='len_chk2()', disabled='true')  
+      #field
+      br
+      br
+    .label_contents3
+      | &#xAC04;&#xB2E8;&#xD55C; &#xC18C;&#xAC1C;
+      form(name='insertFrm')
         textarea(name='introduceself', onkeyup='len_chk()', placeholder='간단한 자기소개를 작성해주세요.(100자 이내)')
-      .bottomnav
-        input.backbtn(type='button', disabled='disabled')
-        input.nextbtn(type='submit', value='')
+    .bottomnav
+      input.backbtn(type='button', disabled='disabled')
+      a(href='/info/submit')
+        input.nextbtn(type='button')

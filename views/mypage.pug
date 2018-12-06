@@ -72,27 +72,27 @@ html(lang='en')
             #to_margin2
               input(type='password', name='new_password_check')
             input.storebtn(type='submit', value='')
+  
+    for result in results
       .user_portfolio
-        h2 &#xB0B4; &#xD3EC;&#xD2B8;&#xD3F4;&#xB9AC;&#xC624;
+        h2 내 포트폴리오
         hr
         .contents3
-          p#portfolio_name &#xC5F4;&#xC815;&#xC801;&#xC778; &#xACBD;&#xB825;&#xC790;, &#xBC14;&#xB85C; &#xC811;&#xB2C8;&#xB2E4;.
+          p#portfolio_name 열정적인 경력자, 바로 접니다.
           .portfolio_img
           .portfolio_info1
             p#create_day
-              b &#xC0DD;&#xC131; &#xB0A0;&#xC9DC;
+              b 생성 날짜
               br
-              |                     2018.09.24
+              .temp=result.createdAt
             p#update_day
-              b &#xCD5C;&#xADFC; &#xC5C5;&#xB370;&#xC774;&#xD2B8; &#xB0A0;&#xC9DC;
+              b 최근 업데이트 날짜
               br
-              |                     2018.12.01
+              .temp=result.updatedAt
             p#view
-              b &#xC870;&#xD68C;&#xC218;:
-              |  48
-          p
-        .portfolio_info2
-          span#user_devfield #Android, #Web
-          span#user_spefield #&#xBCF4;&#xC548;, #&#xAC8C;&#xC784;
-          span#user_devlang &#xAC1C;&#xBC1C; &#xC5B8;&#xC5B4;: C, C++
-        button.updatebtn
+              b=`조회수:  ${result.port_views}`
+          .portfolio_info2
+            span#user_devfield=result.dev_field
+            span#user_spefield=result.spe_field
+            span#user_devlang=`개발 언어: ${result.dev_lang}`
+          button.updatebtn

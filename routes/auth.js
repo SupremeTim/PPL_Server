@@ -7,7 +7,9 @@ const { User } = require('../models');
 const router = express.Router();
 
 router.get('/', isNotLoggedIn, (req, res, next) => {
-    res.render('loginpage');
+    res.render('loginpage',{
+        user:req.user,
+    });
 });
 
 router.get('/temp', isNotLoggedIn, (req, res, next) => {

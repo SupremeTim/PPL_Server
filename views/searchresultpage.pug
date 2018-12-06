@@ -33,8 +33,7 @@ html
       li#productmenu.menu
         a(href='/product') PRODUCT
     .search_top
-      .search_bar
-        | 열정, Android 
+      .search_bar=`${search} ${develop} ${spec}`
         a(href='/search')
           img.cancelbtn(src='../icon/searchpage_cancelbutton.png')
     .portfolio_box

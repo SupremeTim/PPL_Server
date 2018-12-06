@@ -44,13 +44,16 @@ router.post('/submit', async (req, res, next) => {
                 },
             }
         });
-
+        
         /*
         for (var i in port){
             console.log(port[i]);
         }*/
             
         return res.render('searchresultpage', {
+            spec:spe,
+            develop:dev,
+            search:searchkeyword,
             results:port,
             user:req.user,
         });
