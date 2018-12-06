@@ -5,7 +5,7 @@ const router=express.Router();
 
 router.get('/', isLoggedIn, (req,res,next)=>{
     res.render('portfolio_create', {
-        name:req.user.name,
+        user:req.user,
     });
 });
 
