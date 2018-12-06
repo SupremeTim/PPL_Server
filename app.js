@@ -16,6 +16,7 @@ const storyRouter = require('./routes/story');
 const templateRouter = require('./routes/template');
 const portRouter = require('./routes/portfolio');
 const searchRouter = require('./routes/search');
+const mypageRouter = require('./routes/mypage');
 const { sequelize } = require('./models');
 
 const app = express();
@@ -52,6 +53,7 @@ app.use('/story', storyRouter);
 app.use('/template', templateRouter);
 app.use('/portfolio', portRouter);
 app.use('/search', searchRouter);
+app.use('/mypage', mypageRouter);
 
 app.use((req, res, next) => {
   const err = new Error('Not Found');
