@@ -73,26 +73,26 @@ html(lang='en')
               input(type='password', name='new_password_check')
             input.storebtn(type='submit', value='')
   
-    for result in results
-      .user_portfolio
-        h2 내 포트폴리오
-        hr
-        .contents3
-          p#portfolio_name 열정적인 경력자, 바로 접니다.
-          .portfolio_img
-          .portfolio_info1
-            p#create_day
-              b 생성 날짜
-              br
-              .temp=result.createdAt
-            p#update_day
-              b 최근 업데이트 날짜
-              br
-              .temp=result.updatedAt
-            p#view
-              b=`조회수:  ${result.port_views}`
-          .portfolio_info2
-            span#user_devfield=result.dev_field
-            span#user_spefield=result.spe_field
-            span#user_devlang=`개발 언어: ${result.dev_lang}`
-          button.updatebtn
+      for result in results
+        .user_portfolio
+          h2 내 포트폴리오
+          hr
+          .contents3
+            p#portfolio_name 열정적인 경력자, 바로 접니다.
+            .portfolio_img
+            .portfolio_info1
+              p#create_day
+                b 생성 날짜
+                br
+                .temp=result.createdAt
+              p#update_day
+                b 최근 업데이트 날짜
+                br
+                .temp=result.updatedAt
+              p#view
+                b=`조회수:  ${result.port_views}`
+            .portfolio_info2
+              span#user_devfield=result.dev_field
+              span#user_spefield=result.spe_field
+              span#user_devlang=`개발 언어: ${result.dev_lang}`
+            button.updatebtn

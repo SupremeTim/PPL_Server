@@ -66,40 +66,42 @@ html
         a(href='/make') PORTFOLIO
       li#productmenu.menu
         a(href='/product') PRODUCT
-    .side
-      h1 1. 기본 정보
-    // 통신해야 하는 부분
-    .contentlabel1
-      | 이름
-      br
-      br
-      |         연락처
-      br
-      br
-      |         e-mail
-      br
-      br
-      |         프로필
-      br
-      br
-    .contents1
-      .user=user.name
-      br
-      .phone=user.phone
-      br
-      .email=user.email
-      br
-      // 파일 첨부
-      #status  
-      #holder
+    form(action='/info/submit', method='get')
+      .side
+        h1 1. 기본 정보
+      // 통신해야 하는 부분
+      .contentlabel1
+        | 이름
+        br
+        br
+        |             연락처
+        br
+        br
+        |             e-mail
+        br
+        br
+        |             프로필
+        br
+        br
+      .contents1
+        .user=user.name
+        br
+        .phone=user.phone
+        br
+        .email=user.email
+        br
+        // 파일 첨부
+        #status  
+        #holder
           img#img-preview(src='/icon/portfoliopage_profilebox.png', alt='profilebox', width='200px', height='200px')
-      .filebox
-        p
-          label(for='file_btn') &#xD30C;&#xC77C; &#xC120;&#xD0DD;
-          input#file_btn(type='file')
-      script.
-        if (document.getElementById('img')) {
-          document.getElementById('img').addEventListener('change', function(e) {
+        .filebox
+          p
+            label(for='file_btn') 파일 선택
+            input#img-url(type='hidden' name='url')
+            input#file_btn(type='file' accept='image/*')
+        script.
+          if (document.getElementById('file_btn')) {
+          document.getElementById('file_btn').addEventListener('change', function(e) {
             var formData = new FormData();
             console.log(this, this.files);
             formData.append('img', this.files[0]);
@@ -114,50 +116,48 @@ html
               else {
                 console.error(xhr.responseText);
               }
-            };
-            xhr.open('POST', '/info/img');
-            xhr.send(formData);
-          });
-        }
-    .contentlabel2
-      | 나이 공개 여부
-      br
-      br
-      |         경력 사항 
-      br
-      br
-    .contents2
-      label
-        input(type='radio', name='age_open', value='open')
-        | &#xACF5;&#xAC1C;
-      label
-        input(type='radio', name='age_open', value='close')
-        | &#xBE44;&#xACF5;&#xAC1C;
-      br
-      br
-      label
-        input(type='radio', name='career', value='new', onclick='invisibleCareer()')
-        | &#xC2E0;&#xC785;
-      label
-        input(type='radio', name='career', value='old', onclick='visibleCareer()')
-        | &#xACBD;&#xB825;
-      .career_box(disabled='true')
-        | &#xACBD;&#xB825; &#xC774;&#xB984;: 
-        input#career_name(type='text', disabled='true')
+                };
+                xhr.open('POST', '/info/img');
+                xhr.send(formData);
+              });
+            }
+      .contentlabel2
+        | 나이 공개 여부
         br
-        |             &#xACBD;&#xB825; &#xAE30;&#xAC04;: 
-        input#career_duration(type='text', disabled='true')
         br
-        |             &#xACBD;&#xB825; &#xC18C;&#xAC1C;: 
-        textarea#career_info(placeholder='경력에 대한 간단한 소개를 해주세요.(40자 이내)', onkeyup='len_chk2()', disabled='true')  
-      #field
-      br
-      br
-    .label_contents3
-      | &#xAC04;&#xB2E8;&#xD55C; &#xC18C;&#xAC1C;
-      form(name='insertFrm')
-        textarea(name='introduceself', onkeyup='len_chk()', placeholder='간단한 자기소개를 작성해주세요.(100자 이내)')
-    .bottomnav
-      input.backbtn(type='button', disabled='disabled')
-      a(href='/info/submit')
-        input.nextbtn(type='button')
+        |             경력 사항 
+        br
+        br
+      .contents2
+        label
+          input(type='radio', name='age_open', value='open')
+          | 공개
+        label
+          input(type='radio', name='age_open', value='close')
+          | 비공개
+        br
+        br
+        label
+          input(type='radio', name='career', value='new', onclick='invisibleCareer()')
+          | 신입
+        label
+          input(type='radio', name='career', value='old', onclick='visibleCareer()')
+          | 경력
+        .career_box(disabled='true')
+          | 경력 이름: 
+          input#career_name(type='text', disabled='true', name='com_name')
+          br
+          |                 경력 기간: 
+          input#career_duration(type='text', disabled='true', name='com_term')
+          br
+          |                 경력 소개: 
+          textarea#career_info(name='com_comment', placeholder='경력에 대한 간단한 소개를 해주세요.(40자 이내)', onkeyup='len_chk2()', disabled='true')  
+        #field
+        br
+        br
+      .label_contents3
+        | 간단한 소개
+        textarea#info(name='introduceself', onkeyup='len_chk()', placeholder='간단한 자기소개를 작성해주세요.(100자 이내)')
+      .bottomnav
+        input.backbtn(type='button', disabled='disabled')
+        input.nextbtn(type='submit', value='')

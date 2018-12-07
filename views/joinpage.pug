@@ -143,6 +143,10 @@ html
             select#year(name='year', onchange='setDate(this.form, this.value, this.form.month.value)')
             select#month(name='month', onchange='setDate(this.form, this.form.year.value, this.value)')
             select#day(name='day')
+          .graduatebox
+            label(for='join_graduate') &#xCD5C;&#xC885; &#xD559;&#xB825;
+            br
+            input#join_graduate(type='text', name='graduate')
             input.joinbtn(type='button' onclick='mySubmit(2)' value='')
             //- 회원가입 버튼 위에 폼으로 옮겼음
         hr#bottomline

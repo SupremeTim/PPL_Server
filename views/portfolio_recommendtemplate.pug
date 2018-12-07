@@ -34,13 +34,20 @@ html
         h1 3. 템플릿 추천
       .contents
         p.contents_header=`${user.name}님! 이런 템플릿을 추천드려요.`
-        #templete1
-        #templete2
+        if tempSign1
+          a(href='/template/select/1')
+            img#templete1(src='../icon/template1.png')
+        else if tempSign2
+          a(href='/template/select/2')
+            img#templete1(src='../icon/template2.png')
+        else if tempSign3
+          a(href='/template/select/3')
+            img#templete1(src='../icon/template3.png')
+        else if tempSign4
+          a(href='/template/select/4')
+            img#templete1(src='../icon/template4.png')
         br
         |                 템플릿이 마음에 안드시나요?
         a(href='/template/select')
           u 템플릿 더 보러가기>
-      .bottomnav
-        a(href='/template/back')
-          input.backbtn(type='button')
-        input.nextbtn(type='submit' value='')
+      

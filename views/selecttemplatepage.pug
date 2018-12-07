@@ -60,3 +60,7 @@ html(lang='en')
     button#backbtn(onclick='decrease_index()', style='display: none')
     button#nextbtn(onclick='increase_index()')
     #template_box  
+
+    form(action='/template/submit', method='post', name='templateindexForm')
+      input(type='hidden', name='template_index', value='1')
+      input#selectbtn(type='submit' value='')

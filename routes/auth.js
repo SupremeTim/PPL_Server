@@ -39,7 +39,7 @@ router.post('/check', isNotLoggedIn, async (req, res, next) => {
 });
 
 router.post('/join', isNotLoggedIn, async (req, res, next) => {
-    const { name, nick, password, email, phone, year } = req.body;
+    const { name, nick, password, email, phone, year,graduate } = req.body;
     try {
         const d = new Date();
         const n = d.getFullYear();
@@ -53,6 +53,7 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
             email,
             phone,
             age,
+            univ:graduate,
         });
         return res.render('loginpage', {
             joinSign: 'ok',

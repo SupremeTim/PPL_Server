@@ -29,4 +29,10 @@ router.get('/select', isLoggedIn, (req, res, next) => {
     });
 });
 
+router.get('/select/:id', isLoggedIn, (req, res, next) => {
+    res.render('portfolio_create', {
+        user: req.user,
+    });
+});
+
 module.exports = router;
