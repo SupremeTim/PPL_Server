@@ -18,6 +18,11 @@ html(lang='en')
         }
         else if(index == 2){
             document.getElementById('template_box').style.backgroundImage = "url('../icon/template3.png')";
+            document.getElementById('backbtn').style.display ="";
+            document.getElementById('nextbtn').style.display ="";
+        }
+        else if(index == 3){
+            document.getElementById('template_box').style.backgroundImage = "url('../icon/template4.png')";
             document.getElementById('nextbtn').style.display ="none";
         }
       }
@@ -29,11 +34,14 @@ html(lang='en')
         index--;
         change_background();
       }
+      function return_index(){
+        return index;
+      }
     title Select Template
   body
     .top
       // ppl logo
-      a(href='index.html')
+      a(href='/')
         img#ppl_home(src='../icon/ppl_logo.png', alt='ppl')
       if user && user.id  
         .login_complete
@@ -59,8 +67,9 @@ html(lang='en')
       | &#xD15C;&#xD50C;&#xB9BF; &#xC120;&#xD0DD;
     button#backbtn(onclick='decrease_index()', style='display: none')
     button#nextbtn(onclick='increase_index()')
-    #template_box  
+    a(href=`/template/select/${javascript:return_index()+1}`)
+      #template_box  
 
-    form(action='/template/submit', method='post', name='templateindexForm')
+    //form(action='/template/submit', method='post', name='templateindexForm')
       input(type='hidden', name='template_index', value='1')
       input#selectbtn(type='submit' value='')
