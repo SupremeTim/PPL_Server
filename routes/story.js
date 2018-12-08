@@ -50,7 +50,7 @@ router.post('/submit', isLoggedIn, (req, res, next) => {
     } else {
         devLLength = req.body.dev_lang.length;
     }
-    if (devFLength != 1){
+    if (devFLength != -1 && Array.isArray(req.body.dev_field)){
         for (index = 0; index < devFLength; index++)
         {
             insert = req.body.dev_field.pop();
@@ -71,7 +71,7 @@ router.post('/submit', isLoggedIn, (req, res, next) => {
     } else {
         devF = req.body.dev_field;
     }
-    if (speFLength != 1){
+    if (speFLength != 1 && Array.isArray(req.body.spe_field)){
         for (index = 0; index < speFLength; index++)
         {
             insert = req.body.spe_field.pop();
@@ -92,7 +92,7 @@ router.post('/submit', isLoggedIn, (req, res, next) => {
     } else {
         speF = req.body.spe_field;
     }
-    if (devLLength != 1){
+    if (devLLength != 1 && Array.isArray(req.body.dev_lang)){
         for (index = 0; index < devLLength; index++)
         {
             insert = req.body.dev_lang.pop();

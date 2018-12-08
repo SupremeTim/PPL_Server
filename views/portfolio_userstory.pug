@@ -4,28 +4,9 @@ html
     link(href='/css/mainstyle.css?var=2', type='text/css', rel='stylesheet')
     link(href='/css/portfolio_userstorystyle.css?var=1', type='text/css', rel='stylesheet')
     script(type='text/javascript').
-      function add_div(){
-        var div = document.createElement('div');
-        div.innerHTML = document.getElementById('project_group').innerHTML;
-        document.getElementById('field').appendChild(div);
-        setProjectIndex();
-      }
-      function remove_div(obj){
-        document.getElementById('field').removeChild(obj.parentNode);
-        submitIndex();
-      }
       function mySubmit(){
         document.abilityForm.action='/story/submit';
         document.abilityForm.submit();
-      }
-      var projectIndex = 0;
-      function setProjectIndex(){
-        document.getElementById('project_index').value=projectIndex;
-        projectIndex++;
-      }
-      function submitIndex(){
-        document.projectForm.action = '/story/delete';
-        document.projectForm.submit();
       }
     title userstory
   body(onload='setProjectIndex()')
@@ -79,7 +60,7 @@ html
                 th
                   input#another_df(type='checkbox', name='dev_field', value='another')
                   label(for='another_df') 그 외
-                  input#another_df_(type='text', placeholder='입력하세요...')
+                  input#another_df_(type='text', placeholder='입력하세요...' name='another_devF')
           table.specific_field
             tbody
               tr
@@ -111,9 +92,9 @@ html
                   input#os(type='checkbox', name='spe_field', value='os')
                   label(for='os') 운영체제
                 th(colspan='2')
-                  input#another_sf(type='checkbox', name='develop', value='another')
+                  input#another_sf(type='checkbox', name='spe_field', value='another')
                   label(for='another_sf') 그 외
-                  input#another_sf_(type='text', placeholder='입력하세요...')
+                  input#another_sf_(type='text', placeholder='입력하세요...' name='another_speF')
           table.develop_language
             tbody
               tr
@@ -132,15 +113,14 @@ html
                   input(type='checkbox', name='dev_lang', value='c#', id='c#')
                   label(for='c#') C#
                 th(colspan='2')
-                  input#another_dl(type='checkbox', name='develop', value='another')
+                  input#another_dl(type='checkbox', name='dev_lang', value='another')
                   label(for='another_dl') 그 외
-                  input#another_dl_(type='text', placeholder='입력하세요...')
+                  input#another_dl_(type='text', placeholder='입력하세요...' name='another_devL')
       br
       br
       hr
       .project_experience
         p.contents_header 프로젝트 경험
-        h5 +버튼을 눌러서 프로젝트를 추가해주세요!
         form(action='/story/exp' method='post' name='projectForm')
           #project_group
             .project_form

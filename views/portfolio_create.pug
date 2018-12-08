@@ -7,7 +7,9 @@ html(lang='en')
       function getportfolioName() {
       var portfolio_name = window.prompt("포트폴리오의 이름을 입력해주세요")
       if(portfolio_name != null){
-        location.href='/portfolio/submit'
+        document.portfolio.action='/portfolio/submit';
+        document.getElementById('port-name').value=portfolio_name;
+        document.portfolio.submit();
       }
       }
     title create portfolio
@@ -36,11 +38,12 @@ html(lang='en')
         a(href='/make') PORTFOLIO
       li#productmenu.menu
         a(href='/product') PRODUCT
-    form
+    form(name='portfolio' method='post')
       .side
         h1 4. 포트폴리오 생성
       .contents
         p.contents_header 당신에게 꼭 맞는 포트폴리오가 생성되었어요!
+        input#port-name(type='hidden' name='port_name')
         #porfolio
       .bottomnav
         // 다시 생성
