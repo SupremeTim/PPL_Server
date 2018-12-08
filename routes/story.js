@@ -19,13 +19,6 @@ router.get('/', isLoggedIn, async (req, res, next) => {
 
 router.post('/exp', isLoggedIn, (req, res, next) => {
     setStory(req.body.project_name, req.body.project_info, req.body.project_link, req.body.url);
-    console.log(getStory());
-    res.redirect(204, '/story');
-});
-
-router.post('/delete', (req, res, next) => {
-    spliceStory(req.body.project_index);
-    console.log(getAllStory());
     res.redirect(204, '/story');
 });
 
@@ -34,15 +27,95 @@ router.get('/back', isLoggedIn, (req, res, next) => {
 });
 
 router.post('/submit', isLoggedIn, (req, res, next) => {
-    console.log(req.body);
-    console.log(req.user);
-    setDevField(req.body.dev_field);
-    setSpeField(req.body.spe_field);
-    setDevLang(req.body.dev_lang);
-    console.log(getDevField());
-    console.log(getSpeField());
-    console.log(getDevLang());
-
+    var devFLength;
+    var speFLength;
+    var devLLength;
+    var devF = '';
+    var speF = '';
+    var devL = '';
+    var index;
+    var insert;
+    if (typeof req.body.dev_field === "undefined"){
+        devFLength = -1;
+    } else {
+        devFLength = req.body.dev_field.length;
+    }
+    if (typeof req.body.spe_field === "undefined"){
+        speFLength = -1;
+    } else {
+        speFLength = req.body.spe_field.length;
+    }
+    if (typeof req.body.dev_lang === "undefined"){
+        devLLength = -1;
+    } else {
+        devLLength = req.body.dev_lang.length;
+    }
+    if (devFLength != 1){
+        for (index = 0; index < devFLength; index++)
+        {
+            insert = req.body.dev_field.pop();
+            if (insert == 'another'){
+                if (index == devFLength-1){
+                    devF += req.body.another_devF;
+                } else {
+                    devF += req.body.another_devF + '/';
+                }
+            } else {
+                if (index == devFLength-1){
+                    devF += insert;
+                } else {
+                    devF += insert + '/';
+                }
+            }
+        }
+    } else {
+        devF = req.body.dev_field;
+    }
+    if (speFLength != 1){
+        for (index = 0; index < speFLength; index++)
+        {
+            insert = req.body.spe_field.pop();
+            if (insert == 'another'){
+                if (index == speFLength-1){
+                    speF += req.body.another_speF;
+                } else {
+                    speF += req.body.another_speF + '/';
+                }
+            } else {
+                if (index == speFLength-1){
+                    speF += insert;
+                } else {
+                    speF += insert + '/';
+                }
+            }
+        }
+    } else {
+        speF = req.body.spe_field;
+    }
+    if (devLLength != 1){
+        for (index = 0; index < devLLength; index++)
+        {
+            insert = req.body.dev_lang.pop();
+            if (insert == 'another'){
+                if (index == devLLength-1){
+                    devL += req.body.another_devL;
+                } else {
+                    devL += req.body.another_devL + '/';
+                }
+            } else {
+                if (index == devLLength-1){
+                    devL += insert;
+                } else {
+                    devL += insert + '/';
+                }
+            }
+        }
+    } else {
+        devL = req.body.dev_lang;
+    }
+    setDevField(devF);
+    setSpeField(speF);
+    setDevLang(devL);
     if(getOpenAge && getOpenAge==='close' && getProfileImage){
         res.render('portfolio_recommendtemplate', {
             tempSign1: 1,
