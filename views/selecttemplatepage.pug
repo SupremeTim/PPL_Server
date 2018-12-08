@@ -6,6 +6,7 @@ html(lang='en')
     link(href='../css/selecttemplatestyle.css', type='text/css', rel='stylesheet')
     script.
       var index = 0;
+      document.getElementById('target').href =`/template/select/${index+1}`;
       function change_background(){
         if(index == 0) {
             document.getElementById('template_box').style.backgroundImage = "url('../icon/template1.png')";
@@ -29,14 +30,15 @@ html(lang='en')
       function increase_index(){
         index++;
         change_background();
+        document.getElementById('target').href =`/template/select/${index+1}`;
       }
       function decrease_index(){
         index--;
         change_background();
+        document.getElementById('target').href =`/template/select/${index+1}`;
       }
-      function return_index(){
-        return index;
-      }
+
+      
     title Select Template
   body
     .top
@@ -67,7 +69,7 @@ html(lang='en')
       | &#xD15C;&#xD50C;&#xB9BF; &#xC120;&#xD0DD;
     button#backbtn(onclick='decrease_index()', style='display: none')
     button#nextbtn(onclick='increase_index()')
-    a(href=`/template/select/${javascript:return_index()+1}`)
+    a(id="target" href="")
       #template_box  
 
     //form(action='/template/submit', method='post', name='templateindexForm')
