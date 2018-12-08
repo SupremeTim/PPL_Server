@@ -141,22 +141,23 @@ html
       .project_experience
         p.contents_header 프로젝트 경험
         h5 +버튼을 눌러서 프로젝트를 추가해주세요!
-        form(name='projectForm')
+        form(action='/story/exp' method='post' name='projectForm')
           #project_group
             .project_form
               label(for='project_name') &#xD504;&#xB85C;&#xC81D;&#xD2B8; &#xC774;&#xB984;
-              input#project_name(type='text')
+              input#project_name(type='text' name='project_name')
               br
               .tomargin
                 label(for='project_info', margin-top='15px') &#xD504;&#xB85C;&#xC81D;&#xD2B8; &#xC124;&#xBA85;
-                textarea#project_info
+                textarea#project_info(name='project_info')
                 br
               label(for='project_link') &#xD504;&#xB85C;&#xC81D;&#xD2B8; &#xB9C1;&#xD06C;
-              input#project_link(type='text', placeholder='ex) Github 링크')
+              input#project_link(type='text', placeholder='ex) Github 링크' name='project_link')
               br
               .tomargin
                 label &#xCCA8;&#xBD80;&#xD30C;&#xC77C;
-                input(type='file')
+                input#img-url(name='url' type='hidden')
+                input#img(type='file' accept='image/*')
                 h6#project_img_ex &#xD504;&#xB85C;&#xC81D;&#xD2B8; &#xB300;&#xD45C; &#xC774;&#xBBF8;&#xC9C0;&#xB85C; &#xC0AC;&#xC6A9;&#xB420; &#xC774;&#xBBF8;&#xC9C0;&#xB97C; &#xCCA8;&#xBD80;&#xD558;&#xC138;&#xC694;.
               input.project_storebtn(type='submit', value='')
               script.

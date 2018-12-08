@@ -19,7 +19,7 @@ router.get('/', isLoggedIn, async (req, res, next) => {
 
 router.post('/exp', isLoggedIn, (req, res, next) => {
     setStory(req.body.project_name, req.body.project_info, req.body.project_link, req.body.url);
-    console.log(getAllStory());
+    console.log(getStory());
     res.redirect(204, '/story');
 });
 
@@ -64,7 +64,6 @@ router.post('/submit', isLoggedIn, (req, res, next) => {
             user: req.user,
         });
     }
-    
 });
 
 //----------이미지 업로드-------------
