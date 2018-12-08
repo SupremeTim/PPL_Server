@@ -35,6 +35,16 @@ router.post('/submit', isLoggedIn, (req, res, next) => {
     var devL = '';
     var index;
     var insert;
+    /*
+    for(var i in req.body.dev_field){
+        devF+=(req.body.dev_field[i]+"/");
+    }
+    for(var i in req.body.spe_field){
+        speF+=(req.body.spe_field[i]+"/");
+    }
+    for(var i in req.body.dev_lang){
+        devL+=(req.body.dev_lang[i]+"/");
+    }*/
     if (typeof req.body.dev_field === "undefined"){
         devFLength = -1;
     } else {
@@ -113,6 +123,9 @@ router.post('/submit', isLoggedIn, (req, res, next) => {
     } else {
         devL = req.body.dev_lang;
     }
+    console.log(devF);
+    console.log(speF);
+    console.log(devL);
     setDevField(devF);
     setSpeField(speF);
     setDevLang(devL);
