@@ -5,7 +5,7 @@ const fs = require('fs');
 const { isLoggedIn, isNotLoggedIn, upload } = require('./middlewares');
 
 const { setUserCareer, getUserCareer } = require('../modules/user_modules');
-const { setOpenAge, setIntroComment, getOpenAge, getIntroComment,getProfileImage } = require('../modules/info_modules');
+const { setOpenAge, setIntroComment, getOpenAge, getIntroComment, getProfileImage } = require('../modules/info_modules');
 const { setStory, getStory } = require('../modules/story_modules');
 const { setDevField, getDevField, setDevLang, getDevLang, setSpeField, getSpeField } = require('../modules/port_modules');
 const { getCareerDetail } = require('../modules/career_modules');
@@ -36,33 +36,32 @@ router.post('/submit', isLoggedIn, (req, res, next) => {
     var devL = '';
     var index;
     var insert;
-    if (typeof req.body.dev_field === "undefined"){
+    if (typeof req.body.dev_field === "undefined") {
         devFLength = -1;
     } else {
         devFLength = req.body.dev_field.length;
     }
-    if (typeof req.body.spe_field === "undefined"){
+    if (typeof req.body.spe_field === "undefined") {
         speFLength = -1;
     } else {
         speFLength = req.body.spe_field.length;
     }
-    if (typeof req.body.dev_lang === "undefined"){
+    if (typeof req.body.dev_lang === "undefined") {
         devLLength = -1;
     } else {
         devLLength = req.body.dev_lang.length;
     }
-    if (devFLength != -1 && Array.isArray(req.body.dev_field)){
-        for (index = 0; index < devFLength; index++)
-        {
+    if (devFLength != -1 && Array.isArray(req.body.dev_field)) {
+        for (index = 0; index < devFLength; index++) {
             insert = req.body.dev_field.pop();
-            if (insert == 'another'){
-                if (index == devFLength-1){
+            if (insert == 'another') {
+                if (index == devFLength - 1) {
                     devF += req.body.another_devF;
                 } else {
                     devF += req.body.another_devF + '/';
                 }
             } else {
-                if (index == devFLength-1){
+                if (index == devFLength - 1) {
                     devF += insert;
                 } else {
                     devF += insert + '/';
@@ -70,24 +69,23 @@ router.post('/submit', isLoggedIn, (req, res, next) => {
             }
         }
     } else {
-        if (req.body.dev_field == 'another'){
+        if (req.body.dev_field == 'another') {
             devF = req.body.another_devF;
-        } else{
+        } else {
             devF = req.body.dev_field;
         }
     }
-    if (speFLength != 1 && Array.isArray(req.body.spe_field)){
-        for (index = 0; index < speFLength; index++)
-        {
+    if (speFLength != 1 && Array.isArray(req.body.spe_field)) {
+        for (index = 0; index < speFLength; index++) {
             insert = req.body.spe_field.pop();
-            if (insert == 'another'){
-                if (index == speFLength-1){
+            if (insert == 'another') {
+                if (index == speFLength - 1) {
                     speF += req.body.another_speF;
                 } else {
                     speF += req.body.another_speF + '/';
                 }
             } else {
-                if (index == speFLength-1){
+                if (index == speFLength - 1) {
                     speF += insert;
                 } else {
                     speF += insert + '/';
@@ -95,24 +93,23 @@ router.post('/submit', isLoggedIn, (req, res, next) => {
             }
         }
     } else {
-        if (req.body.spe_field == 'another'){
+        if (req.body.spe_field == 'another') {
             speF = req.body.another_speF;
-        } else{
+        } else {
             speF = req.body.spe_field;
         }
     }
-    if (devLLength != 1 && Array.isArray(req.body.dev_lang)){
-        for (index = 0; index < devLLength; index++)
-        {
+    if (devLLength != 1 && Array.isArray(req.body.dev_lang)) {
+        for (index = 0; index < devLLength; index++) {
             insert = req.body.dev_lang.pop();
-            if (insert == 'another'){
-                if (index == devLLength-1){
+            if (insert == 'another') {
+                if (index == devLLength - 1) {
                     devL += req.body.another_devL;
                 } else {
                     devL += req.body.another_devL + '/';
                 }
             } else {
-                if (index == devLLength-1){
+                if (index == devLLength - 1) {
                     devL += insert;
                 } else {
                     devL += insert + '/';
@@ -120,9 +117,9 @@ router.post('/submit', isLoggedIn, (req, res, next) => {
             }
         }
     } else {
-        if (req.body.dev_lang == 'another'){
+        if (req.body.dev_lang == 'another') {
             devL = req.body.another_devL;
-        } else{
+        } else {
             devL = req.body.dev_lang;
         }
     }
@@ -130,22 +127,22 @@ router.post('/submit', isLoggedIn, (req, res, next) => {
     setSpeField(speF);
     setDevLang(devL);
     console.log(getCareerDetail());
-    if(getOpenAge() == 0 && getProfileImage()){
+    if (getOpenAge() == 0 && getProfileImage()) {
         res.render('portfolio_recommendtemplate', {
             tempSign1: 1,
             user: req.user,
         });
-    }else if(getStory()){
+    } else if (getStory()) {
         res.render('portfolio_recommendtemplate', {
             tempSign2: 2,
             user: req.user,
         });
-    }else if(getCareerDetail()){
+    } else if (getCareerDetail()) {
         res.render('portfolio_recommendtemplate', {
             tempSign3: 3,
             user: req.user,
         });
-    }else{
+    } else {
         res.render('portfolio_recommendtemplate', {
             tempSign4: 4,
             user: req.user,

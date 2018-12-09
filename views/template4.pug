@@ -40,29 +40,29 @@ html(lang='ko')
               .row
                 .col-md-5.my-auto
                   // 받아와야 하는 것
-                  img#my_image_id.img-fluid(name='my_image')
+                  img#my_image_id.img-fluid(name='my_image' src=image)
                 .col-md-7
                   .aboutMeHeader
                     | About Me
                   .aboutMeContent
-                    | name : 
-                    div(name='my_name')
-                    |                         age : 
-                    div(name='my_age')
-                    |                         phone : 
-                    div(name='my_phone')
-                    |                         email : 
-                    div(name='my_email')
-                    |                         school : 
-                    div(name='my_school')
+                    |
+                    div(name='my_name')=`name : ${name}`
+                    |
+                    div(name='my_age')=`age : ${age}`
+                    |
+                    div(name='my_phone')=`phone : ${phone}`
+                    |
+                    div(name='my_email')=`email : ${email}`
+                    |
+                    div(name='my_school')=`school : ${school}`
                     br
-                    div(name='my_info')
+                    div(name='my_info')=info
                   .aboutMeHeader
                     | Languages
                   .aboutMeFrameworks
                     // 받아와야 하는 것
                     a(name='language_bar')
-                      a.contentIcon(name='language_name')
+                      a.contentIcon(name='language_name')=lang
       .row
         #projectsCol.col-md-12(name='projectsCol')
           .projectsWrapper
@@ -76,10 +76,10 @@ html(lang='ko')
                 div(name='project-many')
                   .card
                     // 받아와야 할것
-                    .cardTitle(name='project_name')
-                    .cardText(name='project_explanation')
+                    .cardTitle(name='project_name')=project_name
+                    .cardText(name='project_explanation')=project_content
                     br
-                    a#project_address_id(name='project_address_name', href='', target='_blank')
+                    a#project_address_id(name='project_address_name', href=project_link, target='_blank')
                   br
                   br
                   br
@@ -90,13 +90,13 @@ html(lang='ko')
                 div(name='experience-many')
                   .card
                     // 받아와야 할것
-                    .cardTitle(name='experience_name')
+                    .cardTitle(name='experience_name')=exp_name
                     .cardduration
                       a.cardduration(name='experience_term')
-                        a(name='experience_term_start')
+                        a(name='experience_term_start')=exp_term
                         |  ~ 
-                        a(name='experience_term_end')
-                    .cardText(name='experience_content')
+                        a(name='experience_term_end')=exp_term
+                    .cardText(name='experience_content')=exp_content
                     br
                   br
                   br

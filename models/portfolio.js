@@ -33,6 +33,10 @@ module.exports = (sequelize, DataTypes) => (
             allowNull: true,
             defaultValue: '',
         },
+        templateNum:{
+            type:DataTypes.INTEGER,
+            allowNull:true,
+        },
         createdAt: {
             type: DataTypes.DATE,
             defaultValue: sequelize.literal('now()'),
