@@ -19,6 +19,7 @@ router.get('/', isLoggedIn, async (req, res, next) => {
 
 router.post('/exp', isLoggedIn, (req, res, next) => {
     setStory(req.body.project_name, req.body.project_info, req.body.project_link, req.body.url);
+    console.log(getStory());
     res.redirect(204, '/story');
 });
 
@@ -128,7 +129,8 @@ router.post('/submit', isLoggedIn, (req, res, next) => {
     setDevField(devF);
     setSpeField(speF);
     setDevLang(devL);
-    if(getOpenAge() && getOpenAge() === 'close' && getProfileImage()){
+    console.log(getCareerDetail());
+    if(getOpenAge() == 0 && getProfileImage()){
         res.render('portfolio_recommendtemplate', {
             tempSign1: 1,
             user: req.user,

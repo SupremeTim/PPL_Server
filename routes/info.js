@@ -23,7 +23,7 @@ router.post('/submit', isLoggedIn, async (req, res, next) => {
     setIntroComment(req.body.introduceself);
     setUserCareer(req.body.career)
     setProfileImage(req.body.url);
-    setCareerDetail(req.body.com_name, req.body.com_term, req.body.com_comment);
+    if(getUserCareer()==1) setCareerDetail(req.body.com_name, req.body.com_term, req.body.com_comment);
     res.render('portfolio_userstory', {
         user: req.user,
     });

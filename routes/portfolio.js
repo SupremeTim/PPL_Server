@@ -45,13 +45,15 @@ router.post('/submit', async (req,res,next)=>{
             intro_comment: getIntroComment(),
             port_id: port[0].id,
         });
-        await Project_Experience.create({
-            pro_name: getStoryName(),
-            pro_comment: getStoryInfo(),
-            pro_link: getStoryLink(),
-            pro_image: getStoryUrl(),
-            port_id: port[0].id,
-        });
+        if(getStory==='undefined'){
+            await Project_Experience.create({
+                pro_name: getStoryName(),
+                pro_comment: getStoryInfo(),
+                pro_link: getStoryLink(),
+                pro_image: getStoryUrl(),
+                port_id: port[0].id,
+            });
+        }
         if (getUserCareer() == 1){
             var careerDetail = getCareerDetail();
             await Career_Detail.create({
