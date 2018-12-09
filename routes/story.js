@@ -35,16 +35,6 @@ router.post('/submit', isLoggedIn, (req, res, next) => {
     var devL = '';
     var index;
     var insert;
-    /*
-    for(var i in req.body.dev_field){
-        devF+=(req.body.dev_field[i]+"/");
-    }
-    for(var i in req.body.spe_field){
-        speF+=(req.body.spe_field[i]+"/");
-    }
-    for(var i in req.body.dev_lang){
-        devL+=(req.body.dev_lang[i]+"/");
-    }*/
     if (typeof req.body.dev_field === "undefined"){
         devFLength = -1;
     } else {
@@ -79,7 +69,11 @@ router.post('/submit', isLoggedIn, (req, res, next) => {
             }
         }
     } else {
-        devF = req.body.dev_field;
+        if (req.body.dev_field == 'another'){
+            devF = req.body.another_devF;
+        } else{
+            devF = req.body.dev_field;
+        }
     }
     if (speFLength != 1 && Array.isArray(req.body.spe_field)){
         for (index = 0; index < speFLength; index++)
@@ -100,7 +94,11 @@ router.post('/submit', isLoggedIn, (req, res, next) => {
             }
         }
     } else {
-        speF = req.body.spe_field;
+        if (req.body.spe_field == 'another'){
+            speF = req.body.another_speF;
+        } else{
+            speF = req.body.spe_field;
+        }
     }
     if (devLLength != 1 && Array.isArray(req.body.dev_lang)){
         for (index = 0; index < devLLength; index++)
@@ -121,25 +119,26 @@ router.post('/submit', isLoggedIn, (req, res, next) => {
             }
         }
     } else {
-        devL = req.body.dev_lang;
+        if (req.body.dev_lang == 'another'){
+            devL = req.body.another_devL;
+        } else{
+            devL = req.body.dev_lang;
+        }
     }
-    console.log(devF);
-    console.log(speF);
-    console.log(devL);
     setDevField(devF);
     setSpeField(speF);
     setDevLang(devL);
-    if(getOpenAge && getOpenAge==='close' && getProfileImage){
+    if(getOpenAge() && getOpenAge() === 'close' && getProfileImage()){
         res.render('portfolio_recommendtemplate', {
             tempSign1: 1,
             user: req.user,
         });
-    }else if(getStory[3]){
+    }else if(getStory()){
         res.render('portfolio_recommendtemplate', {
             tempSign2: 2,
             user: req.user,
         });
-    }else if(getCareerDetail){
+    }else if(getCareerDetail()){
         res.render('portfolio_recommendtemplate', {
             tempSign3: 3,
             user: req.user,

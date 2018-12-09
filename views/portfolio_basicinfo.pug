@@ -66,7 +66,7 @@ html
         a(href='/make') PORTFOLIO
       li#productmenu.menu
         a(href='/product') PRODUCT
-    form(action='/info/submit', method='get')
+    form(action='/info/submit', method='post')
       .side
         h1 1. 기본 정보
       // 통신해야 하는 부분
@@ -130,18 +130,20 @@ html
         br
       .contents2
         label
-          input(type='radio', name='age_open', value='open')
+          //- 나이 공개: 1, 비공개: 0
+          input(type='radio', name='age_open', value='1')
           | 공개
         label
-          input(type='radio', name='age_open', value='close')
+          input(type='radio', name='age_open', value='0')
           | 비공개
         br
         br
         label
-          input(type='radio', name='career', value='new', onclick='invisibleCareer()')
+          //- 신입: 0, 경력: 1
+          input(type='radio', name='career', value='0', onclick='invisibleCareer()')
           | 신입
         label
-          input(type='radio', name='career', value='old', onclick='visibleCareer()')
+          input(type='radio', name='career', value='1', onclick='visibleCareer()')
           | 경력
         .career_box(disabled='true')
           | 경력 이름: 

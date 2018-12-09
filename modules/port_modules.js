@@ -1,6 +1,5 @@
 var portId;
 var portView;
-var portName;
 var devField;
 var devLang;
 var speField;
@@ -20,14 +19,6 @@ module.exports.setPortView = function(port_view) {
 
 module.exports.getPortView = function() {
     return portView;
-};
-
-module.exports.setPortName = function(port_name) {
-    portName = port_name;
-};
-
-module.exports.getPortName = function() {
-    return portName;
 };
 
 module.exports.setDevField = function(dev_field) {
