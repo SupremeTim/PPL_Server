@@ -134,12 +134,12 @@ router.post('/submit', isLoggedIn, (req, res, next) => {
         });
     } else if (getStory()) {
         res.render('portfolio_recommendtemplate', {
-            tempSign2: 2,
+            tempSign2: 3,
             user: req.user,
         });
     } else if (getCareerDetail()) {
         res.render('portfolio_recommendtemplate', {
-            tempSign3: 3,
+            tempSign3: 2,
             user: req.user,
         });
     } else {

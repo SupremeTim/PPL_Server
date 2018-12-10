@@ -34,17 +34,16 @@ router.post('/submit', isLoggedIn, async (req, res, next) => {
             templateNum: getTemplateNum(),
             user_id: req.user.id,
         });
-        const port = await Portfolio.findAll({
+        const port = await Portfolio.find({
             attributes: ['id', 'port_name'],
             where: { user_id: req.user.id },
             order: [['id', 'DESC']],
-            limit: 1,
         });
         await Info.create({
             profile_image: getProfileImage(),
             open_age: getOpenAge(),
             intro_comment: getIntroComment(),
-            port_id: port[0].id,
+            port_id: port.id,
         });
         console.log(getStory());
         if (getStory()) {
@@ -53,7 +52,7 @@ router.post('/submit', isLoggedIn, async (req, res, next) => {
                 pro_comment: getStoryInfo(),
                 pro_link: getStoryLink(),
                 pro_image: getStoryUrl(),
-                port_id: port[0].id,
+                port_id: port.id,
             });
         }
         if (getUserCareer() == 1) {
@@ -62,11 +61,12 @@ router.post('/submit', isLoggedIn, async (req, res, next) => {
                 com_name: getCareerName(),
                 com_term: getCareerTerm(),
                 com_comment: getCareerComment(),
-                user_id: req.user.id,
+                port_id: port.id,
             });
         }
         return res.render('portfolio_complete', {
             user: req.user,
+            name:port_name,
         });
     } catch (error) {
         console.log(error);
@@ -104,48 +104,75 @@ router.get('/complete', isLoggedIn, async (req, res, next) => {
         console.log(info);
         const career = await Career_Detail.find({
             where: {
-                user_id: req.user.id,
+                port_id: port.id,
             },
         });
         console.log(career);
+        if(career){
+            return res.render(`template${port.templateNum}`, {
+                name: req.user.name,
+                port_name: port.port_name,
+                age: user.age,
+                phone: user.phone,
+                email: user.email,
+                school: user.univ,
+                info: info.intro_comment,
+                image: info.profile_image,
+                lang: port.dev_lang,
+                exp_name: career.com_name,
+                exp_content: career.com_comment,
+                exp_term: career.com_term,
+                project_name: project.pro_name,
+                project_link: project.pro_link,
+                project_content: project.pro_comment,
+                project_image:project.pro_image,
+            });
+        }else{
+            return res.render(`template${port.templateNum}`, {
+                name: req.user.name,
+                port_name: port.port_name,
+                age: user.age,
+                phone: user.phone,
+                email: user.email,
+                school: user.univ,
+                info: info.intro_comment,
+                image: info.profile_image,
+                lang: port.dev_lang,
+                project_name: project.pro_name,
+                project_link: project.pro_link,
+                project_content: project.pro_comment,
+                project_image:project.pro_image,
+            });
+        }
         
-        return res.render(`template${port.templateNum}`, {
-            name: req.user.name,
-            port_name: port.port_name,
-            age: user.age,
-            phone: user.phone,
-            email: user.email,
-            school: user.univ,
-            info: info.intro_comment,
-            image: info.profile_image,
-            lang: port.dev_lang,
-            exp_name: career.com_name,
-            exp_content: career.com_comment,
-            exp_term: career.com_term,
-            project_name: project.pro_name,
-            project_link: project.pro_link,
-            project_content: project.pro_comment,
-        });
     } catch (error) {
         console.log(error);
         return error('error');
     }
 });
 
-router.get('/complete/:id', isLoggedIn, async (req, res, next) => {
+router.get('/complete/:id', async (req, res, next) => {
     try {
-        const user = await User.find({
-            where: {
-                id: req.user.id,
-            },
-        });
-        console.log(user);
         const port = await Portfolio.find({
             where: {
                 id: req.params.id,
             },
         });
+        const user = await User.find({
+            where: {
+                id: port.user_id,
+            },
+        });
+        console.log(user);
+
         console.log(port);
+        await Portfolio.update({
+            port_views:port.port_views+1,
+        },{
+            where:{
+                id:port.port_id,
+            },
+        });
         const project = await Project_Experience.find({
             where: {
                 port_id: port.id,
@@ -160,27 +187,46 @@ router.get('/complete/:id', isLoggedIn, async (req, res, next) => {
         console.log(info);
         const career = await Career_Detail.find({
             where: {
-                user_id: req.user.id,
+                port_id: port.id,
             },
         });
         console.log(career);
-        return res.render(`template${port.templateNum}`, {
-            name: req.user.name,
-            port_name: port.port_name,
-            age: user.age,
-            phone: user.phone,
-            email: user.email,
-            school: user.univ,
-            info: info.intro_comment,
-            image: info.profile_image,
-            lang: port.dev_lang,
-            exp_name: career.com_name,
-            exp_content: career.com_comment,
-            exp_term: career.com_term,
-            project_name: project.pro_name,
-            project_link: project.pro_link,
-            project_content: project.pro_comment,
-        });
+        if(career){
+            return res.render(`template${port.templateNum}`, {
+                name: user.name,
+                port_name: port.port_name,
+                age: user.age,
+                phone: user.phone,
+                email: user.email,
+                school: user.univ,
+                info: info.intro_comment,
+                image: info.profile_image,
+                lang: port.dev_lang,
+                exp_name: career.com_name,
+                exp_content: career.com_comment,
+                exp_term: career.com_term,
+                project_name: project.pro_name,
+                project_link: project.pro_link,
+                project_content: project.pro_comment,
+                project_image:project.pro_image,
+            });
+        }else{
+            return res.render(`template${port.templateNum}`, {
+                name: user.name,
+                port_name: port.port_name,
+                age: user.age,
+                phone: user.phone,
+                email: user.email,
+                school: user.univ,
+                info: info.intro_comment,
+                image: info.profile_image,
+                lang: port.dev_lang,
+                project_name: project.pro_name,
+                project_link: project.pro_link,
+                project_content: project.pro_comment,
+                project_image:project.pro_image,
+            });
+        }
     } catch (error) {
         console.log(error);
         return error('error');

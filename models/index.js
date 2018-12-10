@@ -24,8 +24,8 @@ db.User.hasMany(db.Portfolio, { foreignKey: 'user_id', sourceKey: 'id' });
 db.Portfolio.belongsTo(db.User, {foreignKey: 'user_id', targetKey: 'id'});
 
 // user 1 : N career_Detail - 사용자 한명 당 여러개의 경력 사항을 가질 수 있다
-db.User.hasMany(db.Career_Detail, { foreignKey: 'user_id', sourceKey: 'id'});
-db.Career_Detail.belongsTo(db.User, { foreignKey: 'user_id', targetKey: 'id'});
+db.Portfolio.hasOne(db.Career_Detail, { foreignKey: 'port_id', sourceKey: 'id'});
+db.Career_Detail.belongsTo(db.Portfolio, { foreignKey: 'port_id', targetKey: 'id'});
 
 // portfolio 1 : 1 info - 포트폴리오 하나 당 입력하는 회원 정보는 하나다
 db.Portfolio.hasOne(db.Info, {foreignKey: 'port_id', sourceKey: 'id'});

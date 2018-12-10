@@ -63,12 +63,15 @@ p.contents_header{
     margin-bottom:10px;
 }
 
-#porfolio{
-    border: solid 1px #707070;
+.porfolio{
+    border: none;
     width: 800px;
     height: 480px;
+    margin-left: 140px;
     margin-top: 20px;
+    margin-bottom:30px;
 }
+
 
 .recreatebtn{
     width: 120px; height: 43px;

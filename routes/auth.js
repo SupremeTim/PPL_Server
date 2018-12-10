@@ -13,7 +13,7 @@ router.get('/', isNotLoggedIn, (req, res, next) => {
 });
 
 router.get('/temp', isNotLoggedIn, (req, res, next) => {
-    res.render('joinpage');
+    res.status(204).render('joinpage');
 });
 
 router.post('/check', isNotLoggedIn, async (req, res, next) => {
