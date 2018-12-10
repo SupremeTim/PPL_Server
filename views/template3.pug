@@ -20,7 +20,7 @@ html(lang='kr')
         .grid
           .deco-visual
           .container
-            p(name='portfolio_name', style='font-size: 50px; color:#eeeeee;  font-weight:bold;')
+            p(name='portfolio_name', style='font-size: 50px; color:#eeeeee;  font-weight:bold;')=port_name
       section.section.platform
         .grid
           p(style='font-size: 30px; color:#0c0c0c;  font-weight:bold;')
@@ -34,30 +34,30 @@ html(lang='kr')
             li
               // 받아와야 할 것
               strong.info-title &#xC774;&#xB984;
-              p.info-desc(name='my_name')
+              p.info-desc(name='my_name')=name
             li
               // 받아와야 할 것
               strong.info-title &#xB098;&#xC774;
-              p.info-desc(name='my_age')
+              p.info-desc(name='my_age')=age
             li
               // 받아와야 할 것
               strong.info-title &#xC774;&#xBA54;&#xC77C;
-              p.info-desc(name='my_email')
+              p.info-desc(name='my_email')=email
             li
               // 받아와야 할 것
               strong.info-title &#xC804;&#xD654;&#xBC88;&#xD638;
-              p.info-desc(name='my_phone')
+              p.info-desc(name='my_phone')=phone
             li
               // 받아와야 할 것
               strong.info-title &#xCD9C;&#xC2E0;&#xD559;&#xAD50;
-              p.info-desc(name='my_school')
+              p.info-desc(name='my_school')=school
             li
               // 받아와야 할 것
-              strong.info-title &#xACBD;&#xB825;
-              p.info-desc(name='my_carrier')
+              //- strong.info-title &#xACBD;&#xB825;
+              //- p.info-desc(name='my_carrier')
       section.section.app
         .grid
-          p.platform-text.fade-cont-1(name='my_info')
+          p.platform-text.fade-cont-1(name='my_info')=info
           br
           br
           br
@@ -71,7 +71,7 @@ html(lang='kr')
           .container-right(name='language_bar')
             p.fade-cont-7
               b
-                a(name='language_name')
+                a(name='language_name')=lang
             br
           // 받아와야 할 것
       section.section.engine
@@ -83,9 +83,9 @@ html(lang='kr')
           ul.engine-info
             li(name='project-many')
               .fade-cont-3
-                strong.info-title(name='project_name')
-                a#project_address_id.info-desc(name='project_address_name', href='')
-                p.info-desc(name='project_explanation')
+                strong.info-title(name='project_name')=project_name
+                a#project_address_id.info-desc(name='project_address_name', href=project_link)
+                p.info-desc(name='project_explanation')=project_content
     script(src='/template/PPL_template_3/web/js/jquery.min.js')
     script(src='/template/PPL_template_3/web/js/scrollreveal.min.js')
     script(src='/template/PPL_template_3/web/js/ui.min.js')

@@ -36,36 +36,41 @@ html(taglib='', prefix='c', uri='http://java.sun.com/jsp/jstl/core', xmlns='http
             h2 About
           #about_content.content-body
             span
-              | Name : 
+              //- | Name : 
+              =`Name : ${name}`
               a(name='my_name')
             // 받아와야 하는 것
             br
             span
-              | Age :
+              //- | Age :
+              =`Age : ${age}`
               a(name='my_age')
             // 받아와야 하는 것
             br
             span
-              | Phone :
+              //- | Phone :
+              =`Phone : ${phone}`
               a(name='my_phone')
             // 받아와야 하는 것
             br
             span
-              | Email : 
+              //- | Email : 
+              =`Email : ${email}`
               a(name='my_email')
             br
             span
-              | School : 
+              //- | School : 
+              =`School : ${school}`
               a(name='my_school')
             // 받아와야 하는 것
             br
-            span
-              | Carrier : 
-              a(name='my_carrier')
+            //- span
+            //-   | Carrier : 
+            //-   a(name='my_carrier')
             br
             br
             br
-            div(name='my_info')
+            div(name='my_info')=info
               // 받아올 부분
         .side-content
       // END ABOUT
@@ -81,12 +86,12 @@ html(taglib='', prefix='c', uri='http://java.sun.com/jsp/jstl/core', xmlns='http
               .card
                 .card-header
                   h4
-                    a(name='experience_name')
-                  span.job-title(name='experience_term')
+                    a(name='experience_name')=exp_name
+                  span.job-title(name='experience_term')=exp_term
                     a(name='experience_term_start')
                     |  ~ 
                     a(name='experience_term_end')
-                .card-content(name='experience_content')
+                .card-content(name='experience_content')=exp_contetn
       .side-content
       // END EXPERIENCE
       // BEGIN PROJECTS
@@ -100,12 +105,12 @@ html(taglib='', prefix='c', uri='http://java.sun.com/jsp/jstl/core', xmlns='http
             // CARD #1
             .project-card(name='project-many')
               .project-image
-                img(name='project_image', src=' ')
+                img(name='project_image', src=project_image)
               .project-content
                 h4
-                  a(name='project_name')
-                p(name='project_explanation')
-                a#project_address_id(name='project_address_name', href='')
+                  a(name='project_name')=project_name
+                p(name='project_explanation')=project_content
+                a#project_address_id(name='project_address_name', href=project_link)
         .side-content-sm
       // END PROJECTS
       // BEGIN SKILLS
@@ -119,6 +124,6 @@ html(taglib='', prefix='c', uri='http://java.sun.com/jsp/jstl/core', xmlns='http
             // 받아와야하는것
             ul.ul-skills
               li.li-skills(name='language_bar')
-                div(name='language_name')
+                div(name='language_name')=lang
         .side-content
       // END SKILLS
