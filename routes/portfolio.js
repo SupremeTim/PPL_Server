@@ -46,7 +46,8 @@ router.post('/submit', isLoggedIn, async (req, res, next) => {
             intro_comment: getIntroComment(),
             port_id: port[0].id,
         });
-        if (getStory != 'undefined') {
+        console.log(getStory());
+        if (getStory()) {
             await Project_Experience.create({
                 pro_name: getStoryName(),
                 pro_comment: getStoryInfo(),
@@ -107,6 +108,7 @@ router.get('/complete', isLoggedIn, async (req, res, next) => {
             },
         });
         console.log(career);
+        
         return res.render(`template${port.templateNum}`, {
             name: req.user.name,
             port_name: port.port_name,
