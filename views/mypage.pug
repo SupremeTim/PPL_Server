@@ -80,8 +80,8 @@ html(lang='en')
           .contents3
             p#portfolio_name 열정적인 경력자, 바로 접니다.
             .portfolio_img
-              a(href=`/portfolio/complete/${result.id}`)  이미지 등록
-                img(src='')
+              a(href=`/portfolio/complete/${result.id}`)
+                img(src=`../icon/template${result.templateNum}.png` width='380px' height='210px')
             .portfolio_info1
               p#create_day
                 b 생성 날짜
@@ -94,7 +94,9 @@ html(lang='en')
               p#view
                 b=`조회수:  ${result.port_views}`
             .portfolio_info2
-              span#user_devfield=result.dev_field
-              span#user_spefield=result.spe_field
+              span#user_devfield=`개발 분야: ${result.dev_field}`
+              br
+              span#user_spefield=`전문 분야: ${result.spe_field}`
+              br
               span#user_devlang=`개발 언어: ${result.dev_lang}`
             button.updatebtn

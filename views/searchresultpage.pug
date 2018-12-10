@@ -42,7 +42,8 @@ html
           .result_portfolio
            .portfolio_info
              .pic
-              img.pic-image(src='../icon/portfoliopage_portfolio1.png')
+              a(href=`/portfolio/complete/${result.id}`) 이미지부분
+                img.pic-image(src='../icon/portfoliopage_portfolio1.png')
               span.pic-caption.bottom-to-top
                 h3 열정적인 경력직, 바로 저입니다.
            h4=`${result.user.name}, ${result.user.age}세, ${result.spe_field} 부문, ${result.dev_field} 개발자`
