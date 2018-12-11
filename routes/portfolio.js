@@ -66,7 +66,7 @@ router.post('/submit', isLoggedIn, async (req, res, next) => {
         }
         return res.render('portfolio_complete', {
             user: req.user,
-            name:port_name,
+            name:req.body.port_name,
         });
     } catch (error) {
         console.log(error);
