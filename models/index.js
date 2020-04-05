@@ -23,7 +23,7 @@ db.Career_Detail = require('./career_detail')(sequelize, Sequelize); // 경력
 db.User.hasMany(db.Portfolio, { foreignKey: 'user_id', sourceKey: 'id' });
 db.Portfolio.belongsTo(db.User, {foreignKey: 'user_id', targetKey: 'id'});
 
-// user 1 : N career_Detail - 사용자 한명 당 여러개의 경력 사항을 가질 수 있다
+// portfolio 1 : 1 career_Detail - 포트폴리오 하나당 경력 하나 -> 수정이 필요할 듯?
 db.Portfolio.hasOne(db.Career_Detail, { foreignKey: 'port_id', sourceKey: 'id'});
 db.Career_Detail.belongsTo(db.Portfolio, { foreignKey: 'port_id', targetKey: 'id'});
 
