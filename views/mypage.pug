@@ -1,0 +1,102 @@
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    link(href='../css/mainstyle.css', type='text/css', rel='stylesheet')
+    link(href='../css/mypagestyle.css', type='text/css', rel='stylesheet')
+    title My Page
+  body
+    if changeSign
+      script.
+        alert('변경이 완료되었습니다!');
+    .top
+      // ppl logo
+      a(href='/')
+        img#ppl_home(src='../icon/ppl_logo.png', alt='ppl')
+      if user && user.id  
+        .login_complete
+          img#profileicon(src='../icon/mainpage_profileicon.png', alt='profile')
+          a(href='/mypage')= user.name +'님'
+          |             &nbsp;&nbsp;|&nbsp;&nbsp;
+          a(href='/mypage') 설정
+          |             &nbsp;&nbsp;|&nbsp;&nbsp;
+          a(href='/auth/logout') 로그아웃
+          //- 디자인 요청!!!
+      else
+        .login
+          a(href='/auth') 로그인 / 회원가입
+    // 메뉴바
+    ul.mainmenu
+      li#searchmenu.menu
+        a(href='/search') SEARCH
+      li#portfoliiomenu.menu
+        a(href='/make') PORTFOLIO
+      li#productmenu.menu
+        a(href='/product') PRODUCT
+    .my_background
+      h1 &#xB9C8;&#xC774;&#xD398;&#xC774;&#xC9C0;
+      .user_info
+        h2 &#xC0AC;&#xC6A9;&#xC790; &#xC774;&#xB984; &#xBC0F; &#xC774;&#xBA54;&#xC77C;
+        hr
+        .content_label1
+          | &#xC0AC;&#xC6A9;&#xC790; &#xC774;&#xB984;
+          br
+          br
+          |                 &#xC774;&#xBA54;&#xC77C;
+        .contents1
+          form(name='user_info', action='/mypage/change', method='post')
+            input(type='text', value=user.name, name='name')
+            br
+            input(type='text', value=user.email, name='email')
+            input.storebtn(type='submit', value='')
+      .user_password
+        h2 &#xBE44;&#xBC00;&#xBC88;&#xD638;
+        hr
+        .content_label2
+          | &#xD604;&#xC7AC; &#xBE44;&#xBC00;&#xBC88;&#xD638;
+          br
+          br
+          br
+          |                 &#xC0C8; &#xBE44;&#xBC00;&#xBC88;&#xD638;
+          br
+          #to_margin1 &#xC0C8; &#xBE44;&#xBC00;&#xBC88;&#xD638; &#xD655;&#xC778;
+        .contents2
+          form(name='user_password', action='', method='')
+            input(type='password', name='old_password')
+            br
+            a#find_password(href='findpasswordpage.html')
+              u &#xBE44;&#xBC00;&#xBC88;&#xD638; &#xCC3E;&#xAE30;&gt;
+            br
+            br
+            input(type='password', name='new_password')
+            br
+            #to_margin2
+              input(type='password', name='new_password_check')
+            input.storebtn(type='submit', value='')
+  
+      for result in results
+        .user_portfolio
+          h2 내 포트폴리오
+          hr
+          .contents3
+            p#portfolio_name=result.port_name
+            .portfolio_img
+              a(href=`/portfolio/complete/${result.id}`)
+                img(src=`../icon/template${result.templateNum}.png` width='380px' height='210px')
+            .portfolio_info1
+              p#create_day
+                b 생성 날짜
+                br
+                .temp=result.createdAt
+              p#update_day
+                b 최근 업데이트 날짜
+                br
+                .temp=result.updatedAt
+              p#view
+                b=`조회수:  ${result.port_views}`
+            .portfolio_info2
+              span#user_devfield=`개발 분야: ${result.dev_field}`
+              br
+              span#user_spefield=`전문 분야: ${result.spe_field}`
+              br
+              span#user_devlang=`개발 언어: ${result.dev_lang}`
+            button.updatebtn

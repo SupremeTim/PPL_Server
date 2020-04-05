@@ -1,0 +1,44 @@
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    link(href='/css/mainstyle.css?', type='text/css', rel='stylesheet')
+    link(href='/css/portfolio_completestyle.css', type='text/css', rel='stylesheet')
+    title Title
+  body
+    .top
+      // ppl logo
+      a(href='/')
+        img#ppl_home(src='/icon/ppl_logo.png', alt='ppl')
+      if user && user.id  
+        .login_complete
+          img#profileicon(src='../icon/mainpage_profileicon.png', alt='profile')
+          a(href='/mypage')= user.name +'님'
+          |             &nbsp;&nbsp;|&nbsp;&nbsp;
+          a(href='/mypage') 설정
+          |             &nbsp;&nbsp;|&nbsp;&nbsp;
+          a(href='/auth/logout') 로그아웃
+          //- 디자인 요청!!!
+      else
+        .login
+          a(href='/auth') 로그인 / 회원가입// 로그인
+    // 메뉴바
+    ul.mainmenu
+      li#searchmenu.menu
+        a(href='/search') SEARCH
+      li#portfoliiomenu.menu
+        a(href='/make') PORTFOLIO
+      li#productmenu.menu
+        a(href='/product') PRODUCT
+    div
+      br
+      br
+      br
+      br
+      br
+      br
+      img#backgroundimg1(src='/icon/portfoliopage_backroundimage1.png')
+      p#completement1=`축하합니다! ${user.name}님만을 위한 포트폴리오가 생성되었어요.`
+      p#completement2=name
+      p#completement3 
+        a(href='/portfolio/complete') 지금 보러가기!
+      img#backgroundimg2(src='/icon/portfoliopage_backgroundimage2.png')

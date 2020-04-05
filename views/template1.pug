@@ -1,0 +1,164 @@
+html
+  meta(content='1SvtbiLc7S785RumJoV8j4nEW5htJQYg8rn-ZFc7Ckc', name='google-site-verification')
+  meta(content='text/html; charset=UTF-8', http-equiv='Content-Type')
+  meta(content='width=device-width,initial-scale=1,maximum-scale=1', name='viewport')
+  title
+    | PPL
+  link(href='/template/PPL_template_1/web/css/materialize.css', rel='stylesheet', media='screen,projection')
+  link(href='/template/PPL_template_1/web/css/font-awesome.css', rel='stylesheet')
+  link(href='/template/PPL_template_1/web/css/pro-bars.css', rel='stylesheet', media='all')
+  link(href='/template/PPL_template_1/web/css/owl.carousel.css', rel='stylesheet')
+  link#switcher(href='/template/PPL_template_1/web/css/themes/blue-theme.css', rel='stylesheet', media='screen,projection')
+  link(href='/template/PPL_template_1/web/style.css', rel='stylesheet', media='screen,projection')
+  link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+#preloader
+  .progress
+    .indeterminate
+header#header(role='banner')
+  .navbar-fixed
+    nav.mynav
+      .container
+        .nav-wrapper
+          // 받아와야 할 것
+          a.brand-logo(href='/', name='portfolio_name')
+          ul.right.custom-nav.hide-on-med-and-down.menu-scroll
+            li
+              a(href='#about') About Me
+            li
+              a(href='#resume') Skills
+            li
+              a(href='#experience') Experiences
+            li
+              a(href='#edcuation') Educations
+          ul#slide-out.menu-scroll.side-nav
+            li
+              a(href='#about') About Me
+            li
+              a(href='#resume') Skills
+            li
+              a(href='#experience') Experiences
+            li
+              a(href='#edcuation') Educations
+          a.button-collapse(href='#', data-activates='slide-out')
+            i.mdi-navigation-menu
+.main-wrapper
+  main(role='main')
+    section#about(style='background-color:#eeeeee')
+      .container
+        .row
+          .col.s12
+            .about-inner
+              .row
+                .col.s12.m4.l3
+                  .about-inner-left
+                    .row
+                      // 받아와야 하는 것
+                      img.profile-img(src=image, alt='Profile Image', name='my_image')
+                .col.s12.l9.m8
+                  .about-inner-right
+                    h3 About Me
+                    div(name='my_info')=info
+                    br
+                    .col.s12.l6.m12.personal-information
+                      h3 Personal Information
+                      ul
+                        li
+                          span
+                            =`Name : ${name}`
+                            a(name='my_name')
+                          // 받아와야 하는 것
+                        li
+                          span
+                            //- | Age :
+                            =`Age : ${age}`
+                            a(name='my_age')
+                          // 받아와야 하는 것
+                        li
+                          span
+                            //- | Phone :
+                            =`Phone : ${phone}`
+                            a(name='my_phone')
+                          // 받아와야 하는 것
+                        li
+                          span
+                            //- | Email : 
+                            =`Email : ${email}`
+                            a(name='my_email')
+                        li
+                          span
+                            //- | School : 
+                            =`School : ${school}`
+                            a(name='my_school')
+                          // 받아와야 하는 것
+    section#resume
+      section#skill
+        .container
+          .skill-inner
+            h2.title Skills
+            .skill-progress-bar(name='language_bar')
+              span(name='language_name')=`${lang}`
+              .color-wisteria.pro-bar-container
+                // 모르겠다!!!!!!!!!!
+                #percent_id.color-amethyst.pro-bar.bar-90(name='percent_name', data-pro-bar-percent='100')
+      section#experience
+        .container
+          .experience-inner
+            h2.title Experience
+            #owl-carousel.row.experience-slider
+              div(name='experience-many')
+                .col.s12
+                  // 받아와야 하는 것
+                  .card
+                    .waves-effect.waves-light.waves-block.card-image
+                      h2.experience-title(name='experience_term')=exp_term
+                      img.activator(src='/template/PPL_template_1/web/img/exp-1.jpg')
+                    .card-content
+                      span.activator.card-title.reveal-title(name='experience_name')=exp_name
+                    .card-reveal
+                      span.card-title.reveal-title(name='experience_name')=exp_name
+                        i.material-icons.right close
+                      a.card-subtitle(href='#')
+                      div(name='experienc_content')=exp_content
+      section#education
+        .container
+          .education-inner
+            h2.title Projects
+            #owl-carousel1.row.experience-slider
+              div(name='project-many')
+                .col.s12
+                  .card
+                    // 받아와야 하는 것
+                    .waves-effect.waves-light.waves-block.card-image
+                      img.activator(src=project_image, alt='click')
+                    .card-content
+                      span.activator.card-title.reveal-title(name='project_name')=project_name
+                        br
+                    // 받아와야 할 것
+                    div(align='center')
+                      // 모르겠다!!!
+                      a#project_address_id(name='project_address_name', href=project_link)=project_link
+                    .card-reveal
+                      span.card-title.reveal-title(name='project_name')=project_name
+                        i.material-icons.right close
+                      div(name='project_explanation')=project_content
+            .customNavigation
+              a.waves-effect.waves-light.btn.btn-large.btn-floating.white.prev1
+                i.brand-text.mdi-navigation-chevron-left
+              a.waves-effect.waves-light.btn.btn-large.btn-floating.white.next1
+                i.brand-text.mdi-navigation-chevron-right
+      script(src='https://code.jquery.com/jquery-2.1.1.min.js')
+      script(src='/template/PPL_template_1/web/js/materialize.min.js')
+      script(src='/template/PPL_template_1/web/js/appear.min.js')
+      script(src='/template/PPL_template_1/web/js/appear.min.js')
+      script(src='/template/PPL_template_1/web/js/pro-bars.min.js')
+      script(src='https://cdnjs.cloudflare.com/ajax/libs/two.js/0.6.0/two.min.js')
+      script(src='/template/PPL_template_1/web/js/owl.carousel.min.js')
+      script(src='https://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js')
+      script(src='/template/PPL_template_1/web/js/waypoints.min.js')
+      script(src='/template/PPL_template_1/web/js/jquery.counterup.min.js')
+      script(src='/template/PPL_template_1/web/js/custom.min.js')
+      script.
+        !function(e,t,a,n,c,o,s){e.GoogleAnalyticsObject=c,e[c]=e[c]||function(){(e[c].q=e[c].q||[]).push(arguments)},e[c].l=1*new Date,o=t.createElement(a),s=t.getElementsByTagName(a)[0],o.async=1,o.src=n,s.parentNode.insertBefore(o,s)}(window,document,"script","https://www.google-analytics.com/analytics.js","ga"),ga("create","UA-89990694-1","auto"),ga("send","pageview")
+      #fb-root
+      script.
+        !function(e,n,t){var o,c=e.getElementsByTagName(n)[0];e.getElementById(t)||(o=e.createElement(n),o.id=t,o.src="//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8&appId=405588532953982",c.parentNode.insertBefore(o,c))}(document,"script","facebook-jssdk")

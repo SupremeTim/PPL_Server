@@ -1,0 +1,156 @@
+html
+  head
+    link(href='/css/mainstyle.css?var=1', type='text/css', rel='stylesheet')
+    link(href='/css/joinstyle.css?var=1', type='text/css', rel='stylesheet')
+    script(type='text/javascript').
+      function passwordCheck(){
+        var password = document.getElementById("join_pw").value;
+        var passwordCheck = document.getElementById("join_pwck").value;
+        if(passwordCheck == ""){
+        document.getElementById("passwordCheckText").innerHTML="알파벳, 숫자, 특수 문자 중 2가지 이상을 혼합한 비밀번호를 입력하세요."
+        }
+        else if(password!= passwordCheck){
+          document.getElementById("passwordCheckText").innerHTML="<font color=red>비밀번호가 다릅니다.</font>"
+        }
+        else{
+          document.getElementById("passwordCheckText").innerText="비밀번호 확인!"
+        }
+      }
+      function setDate(FORM, year, month, day) {
+        var current, year, month, day, days, i, j;
+        current = new Date();
+        for (i = 0, j = current.getFullYear() -60; i < 60; i++, j++) FORM.year.options[i] = new Option(j, j);
+        for (i = 0; i < 12; i++) {
+          j = (i < 9) ? '0' + (i + 1) : i + 1;
+          FORM.month.options[i] = new Option(j, j);
+        }
+        days = new Date(new Date(year, month, 1) - 86400000).getDate();
+        FORM.day.length = 0;
+        for (i = 0, j; i < days; i++) {
+          j = (i < 9) ? '0' + (i + 1) : i + 1;
+          FORM.day.options[i] = new Option(j, j);
+        }
+        FORM.year.value = year;
+        FORM.month.options[month - 1].selected = true;
+        FORM.day.options[day - 1].selected = true;
+      }
+      function mySubmit(index) {
+          var mberIdExp = /[^(0-9A-Za-z)]/;
+          if (mberIdExp.test(document.joinForm.nick.value)) {
+              alert("아이디는 영문자와 숫자로만 입력하세요");
+          } else {
+               if (index == 1) {
+                   document.joinForm.action = '/auth/check';
+               } else if (index == 2) {
+                   document.joinForm.action = '/auth/join';
+               }
+              document.joinForm.submit();
+          }
+      }
+      /*function LoginIdCheck(){
+        var mberIdExp = /[^(0-9A-Za-z)]/;
+        if(mberIdExp.test(document.nick.value)){
+          alert("아이디는 영문자와 숫자로만 입력하세요");
+        }else{
+          document.action ="/auth/check";
+          document.submit();
+        }
+      }
+      function returnId(){
+        mberIdExp = /[^(0-9A-Za-z)]/;
+        var retVal="";
+        if(document.usedCnt.value == 0){
+          retVal = document.resultId.value;
+          window.returnValue = retVal;
+          window.close();
+        }else{
+          alert("아이디 중복여부가 확인되지 않았습니다.");
+          return;
+        }
+      }*/
+    title joinpage
+  body(onload='setDate(document.forms[0])')
+
+    if no
+      script.
+        alert('이미 존재하는 아이디입니다!');
+    if yes
+      script.
+        alert('사용가능한 아이디입니다!');
+
+    .top
+      // ppl logo
+      a(href='/')
+        img#ppl_home(src='/icon/ppl_logo.png', alt='ppl')
+      if user && user.id  
+        .login_complete
+          img#profileicon(src='../icon/mainpage_profileicon.png', alt='profile')
+          a(href='/mypage')= user.name +'님'
+          |             &nbsp;&nbsp;|&nbsp;&nbsp;
+          a(href='/mypage') 설정
+          |             &nbsp;&nbsp;|&nbsp;&nbsp;
+          a(href='/auth/logout') 로그아웃
+          //- 디자인 요청!!!
+      else
+        .login
+          a(href='/auth') 로그인 / 회원가입
+    // 메뉴바
+    ul.mainmenu
+      li#searchmenu.menu
+        a(href='/search') SEARCH
+      li#portfoliiomenu.menu
+        a(href='/make') PORTFOLIO
+      li#productmenu.menu
+        a(href='/product') PRODUCT
+    .joinbox
+      h1.jointitle &#xD68C;&#xC6D0;&#xAC00;&#xC785;
+      hr#topline
+      .formbox
+        form(name='joinForm' method='post')
+          .idbox
+            input(type='hidden', name='usedCnt', value='0')
+            input(type='hidden', name='resultId', value='0')
+            label(for='join_id') &#xC544;&#xC774;&#xB514;
+            br
+            input#join_id(type='text', name='nick')
+            input.idcheckbtn(type='button', onclick='mySubmit(1)', value='중복확인')
+            .pwbox1
+            label(for='join_pw') &#xBE44;&#xBC00;&#xBC88;&#xD638;
+            br
+            input#join_pw(type='password', name='password', onchange='passwordCheck()')
+          .pwbox2
+            label(for='join_pwck') &#xBE44;&#xBC00;&#xBC88;&#xD638; &#xD655;&#xC778;
+            br
+            input#join_pwck(type='password', onchange='passwordCheck()')
+          p#passwordCheckText 알파벳, 숫자, 특수 문자 중 2가지 이상을 혼합한 비밀번호를 입력하세요.
+          .namebox
+            label(for='join_name') &#xC774;&#xB984;
+            br
+            input#join_name(type='text' name='name')
+          
+          
+          .emailbox
+            label(for='join_email') e-mail
+            br
+            input#join_email(type='text' name='email')
+          .phonebox
+            label(for='join_phone') &#xD734;&#xB300;&#xD3F0; &#xBC88;&#xD638;
+            br
+            input#join_phone(type='text' name='phone')
+          .birthbox
+            | &#xC0DD;&#xB144;&#xC6D4;&#xC77C;
+            br
+            select#year(name='year', onchange='setDate(this.form, this.value, this.form.month.value)')
+            select#month(name='month', onchange='setDate(this.form, this.form.year.value, this.value)')
+            select#day(name='day')
+          .graduatebox
+            label(for='join_graduate') &#xCD5C;&#xC885; &#xD559;&#xB825;
+            br
+            input#join_graduate(type='text', name='graduate')
+            input.joinbtn(type='button' onclick='mySubmit(2)' value='')
+            //- 회원가입 버튼 위에 폼으로 옮겼음
+        hr#bottomline
+        form
+          input#agreebox(type='checkbox')
+          label(for='agreebox') 이용약관, 개인정보취급방침 및 개인정보3자제공에 동의합니다.
+          

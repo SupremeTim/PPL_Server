@@ -1,0 +1,109 @@
+doctype html
+html(lang='ko')
+  head
+    // google analytics stuffs
+    // Global site tag (gtag.js) - Google Analytics
+    script(async='', src='https://www.googletagmanager.com/gtag/js?id=UA-114952259-1')
+    script.
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-114952259-1');
+    // Required meta tags
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    link(href='https://fonts.googleapis.com/css?family=Montserrat|Pridi', rel='stylesheet')
+    // Bootstrap CSS
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm', crossorigin='anonymous')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css')
+    link(rel='stylesheet', type='text/css', href='/template/PPL_template_4/web/styles.css')
+    script(defer='', src='https://use.fontawesome.com/releases/v5.0.6/js/all.js')
+    title PPL
+  body
+    #topHeader.navbar.fixed-top.bg-inverse.navbar-toggleable-md.navbar-inverse.justify-content-end
+      //
+        <img id="github" class="navbarIcon animated invisible" src="images/github-logo.png" alt="GitHub" data-toggle="tooltip" title="GitHub" onclick="window.open('https://github.com/seungmin97', '_blank');">
+        <img id="facebook" class="navbarIcon animated Invisible" src="images/facebook.png" alt="Facebook" data-toggle="tooltip" title="Facebook" onclick="window.open('https://www.facebook.com/leeseungmin97', '_blank');">
+    .container-fluid
+      .row
+        #introCol.col-md-12
+          .introWrapper.centerIt
+            #introTitle.mainTitle.invisible(name='portfolio_name')=port_name
+            #introSubtitle.subTitle.invisible(name='my_name')   
+            #introArrowContainer(style='display: inline-block; transform: scale(2.5,1.25);')
+              a#introArrowButton.scroll.invisible(href='#aboutMeCol')
+                i#introArrow.fas.fa-angle-double-down
+      .row
+        #aboutMeCol.col-md-12(name='aboutMeCol')
+          .aboutMeWrapper
+            #aboutMeCard.aboutMeCard.animated.invisible
+              .row
+                .col-md-5.my-auto
+                  // 받아와야 하는 것
+                  img#my_image_id.img-fluid(name='my_image' src=image)
+                .col-md-7
+                  .aboutMeHeader
+                    | About Me
+                  .aboutMeContent
+                    |
+                    div(name='my_name')=`name : ${name}`
+                    |
+                    div(name='my_age')=`age : ${age}`
+                    |
+                    div(name='my_phone')=`phone : ${phone}`
+                    |
+                    div(name='my_email')=`email : ${email}`
+                    |
+                    div(name='my_school')=`school : ${school}`
+                    br
+                    div(name='my_info')=info
+                  .aboutMeHeader
+                    | Languages
+                  .aboutMeFrameworks
+                    // 받아와야 하는 것
+                    a(name='language_bar')
+                      a.contentIcon(name='language_name')=lang
+      .row
+        #projectsCol.col-md-12(name='projectsCol')
+          .projectsWrapper
+            .row(style='height: 100%')
+              #projectCard1.col-md-12.animated.invisible
+                // 받아와야 할것
+                div
+                  a(style='font-size: 35px; color: #ffffff') project
+                br
+                br
+                div(name='project-many')
+                  .card
+                    // 받아와야 할것
+                    .cardTitle(name='project_name')=project_name
+                    .cardText(name='project_explanation')=project_content
+                    br
+                    a#project_address_id(name='project_address_name', href=project_link, target='_blank')=project_link
+                  br
+                  br
+                  br
+                div
+                  a(style='font-size: 35px; color: #ffffff') experience
+                br
+                br
+                div(name='experience-many')
+                  .card
+                    // 받아와야 할것
+                    .cardTitle(name='experience_name')=exp_name
+                    .cardduration
+                      a.cardduration(name='experience_term')
+                        a(name='experience_term_start')=exp_term
+                        |  ~ 
+                        a(name='experience_term_end')=exp_term
+                    .cardText(name='experience_content')=exp_content
+                    br
+                  br
+                  br
+                  br
+    // Optional JavaScript
+    // jQuery first, then Popper.js, then Bootstrap JS
+    script(src='http://code.jquery.com/jquery-3.3.1.min.js', integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=', crossorigin='anonymous')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q', crossorigin='anonymous')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl', crossorigin='anonymous')
+    script(src='/template/PPL_template_4/web/script.js')

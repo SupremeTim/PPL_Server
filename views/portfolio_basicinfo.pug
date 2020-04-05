@@ -1,0 +1,165 @@
+html
+  head
+    meta(charset='UTF-8')
+    link(href='/css/mainstyle.css?var=2', type='text/css', rel='stylesheet')
+    link(href='/css/portfolio_basicinfostyle.css', type='text/css', rel='stylesheet')
+    script.
+      function len_chk() {
+        var frm = document.insertFrm.introduceself;
+        if (frm.value.length > 100) {
+          alert("자기소개의 글자수는 100자로 제한됩니다.");
+          frm.value = frm.value.substring(0, 100);
+          frm.focus();
+        }
+      }
+      function len_chk2() {
+        var frm = document.insertFrm.introduceself;
+        if (frm.value.length > 40) {
+          alert("경험소개의 글자수는 40자로 제한됩니다.");
+          frm.value = frm.value.substring(0, 40);
+          frm.focus();
+        }
+      }
+      function visibleCareer(){
+        var career_name = document.getElementById('career_name');
+        var career_duration = document.getElementById('career_duration');
+        var career_info = document.getElementById('career_info');
+        career_name.disabled = false;
+        career_duration.disabled = false;
+        career_info.disabled = false;
+      }
+      function invisibleCareer(){
+        var career_name = document.getElementById('career_name');
+        var career_duration = document.getElementById('career_duration');
+        var career_info = document.getElementById('career_info');
+        career_name.disabled = true;
+        career_duration.disabled = true;
+        career_info.disabled = true;
+      }
+    title basicinfo
+  body
+    if productSign
+      script.
+        alert('상품 선택이 완료되었습니다!')
+    .top
+      // ppl logo
+      a(href='/')
+        img#ppl_home(src='../icon/ppl_logo.png', alt='ppl')
+      if user && user.id  
+        .login_complete
+          img#profileicon(src='../icon/mainpage_profileicon.png', alt='profile')
+          a(href='/mypage')= user.name +'님'
+          |             &nbsp;&nbsp;|&nbsp;&nbsp;
+          a(href='/mypage') 설정
+          |             &nbsp;&nbsp;|&nbsp;&nbsp;
+          a(href='/auth/logout') 로그아웃
+          //- 디자인 요청!!!
+      else
+        .login
+          a(href='/auth') 로그인 / 회원가입// 로그인
+      
+    // 메뉴바
+    ul.mainmenu
+      li#searchmenu.menu
+        a(href='/search') SEARCH
+      li#portfoliiomenu.menu
+        a(href='/make') PORTFOLIO
+      li#productmenu.menu
+        a(href='/product') PRODUCT
+    form(action='/info/submit', method='post')
+      .side
+        h1 1. 기본 정보
+      // 통신해야 하는 부분
+      .contentlabel1
+        | 이름
+        br
+        br
+        |             연락처
+        br
+        br
+        |             e-mail
+        br
+        br
+        |             프로필
+        br
+        br
+      .contents1
+        .user=user.name
+        br
+        .phone=user.phone
+        br
+        .email=user.email
+        br
+        // 파일 첨부
+        #status  
+        #holder
+          img#img-preview(src='/icon/portfoliopage_profilebox.png', alt='profilebox', width='200px', height='200px')
+        .filebox
+          p
+            label(for='file_btn') 파일 선택
+            input#img-url(type='hidden' name='url')
+            input#file_btn(type='file' accept='image/*')
+        script.
+          if (document.getElementById('file_btn')) {
+          document.getElementById('file_btn').addEventListener('change', function(e) {
+            var formData = new FormData();
+            console.log(this, this.files);
+            formData.append('img', this.files[0]);
+            var xhr = new XMLHttpRequest();
+            xhr.onload = function() {
+              if (xhr.status == 200) {
+                var url = JSON.parse(xhr.responseText).url;
+                document.getElementById('img-url').value = url;
+                document.getElementById('img-preview').src = url;
+                document.getElementById('img-preview').style.display = inline;
+              }
+              else {
+                console.error(xhr.responseText);
+              }
+                };
+                xhr.open('POST', '/info/img');
+                xhr.send(formData);
+              });
+            }
+      .contentlabel2
+        | 나이 공개 여부
+        br
+        br
+        |             경력 사항 
+        br
+        br
+      .contents2
+        label
+          //- 나이 공개: 1, 비공개: 0
+          input(type='radio', name='age_open', value='1')
+          | 공개
+        label
+          input(type='radio', name='age_open', value='0')
+          | 비공개
+        br
+        br
+        label
+          //- 신입: 0, 경력: 1
+          input(type='radio', name='career', value='0', onclick='invisibleCareer()')
+          | 신입
+        label
+          input(type='radio', name='career', value='1', onclick='visibleCareer()')
+          | 경력
+        .career_box(disabled='true')
+          | 경력 이름: 
+          input#career_name(type='text', disabled='true', name='com_name')
+          br
+          |                 경력 기간: 
+          input#career_duration(type='text', disabled='true', name='com_term')
+          br
+          |                 경력 소개: 
+          textarea#career_info(name='com_comment', placeholder='경력에 대한 간단한 소개를 해주세요.(40자 이내)', onkeyup='len_chk2()', disabled='true')  
+        #field
+        br
+        br
+      .label_contents3
+        | 간단한 소개
+        textarea#info(name='introduceself', onkeyup='len_chk()', placeholder='간단한 자기소개를 작성해주세요.(100자 이내)')
+      .bottomnav
+        input.backbtn(type='button', disabled='disabled')
+        input.nextbtn(type='submit', value='')

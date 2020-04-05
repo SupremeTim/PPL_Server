@@ -1,0 +1,103 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    link(href='../css/mainstyle.css?', type='text/css', rel='stylesheet')
+    link(href='../css/searchstyle.css', type='text/css', rel='stylesheet')
+    script.
+      function press_e(f){
+      if(f.keyCode == 13){
+      searchform.submit();
+      }
+      }
+    title Search
+  body
+    .top
+      // ppl logo
+      a(href='/')
+        img#ppl_home(src='../icon/ppl_logo.png', alt='ppl')
+      if user && user.id  
+        .login_complete
+          img#profileicon(src='../icon/mainpage_profileicon.png', alt='profile')
+          a(href='/mypage')= user.name +'님'
+          |             &nbsp;&nbsp;|&nbsp;&nbsp;
+          a(href='/mypage') 설정
+          |             &nbsp;&nbsp;|&nbsp;&nbsp;
+          a(href='/auth/logout') 로그아웃
+          //- 디자인 요청!!!
+      else
+        .login
+          a(href='/auth') 로그인 / 회원가입
+    // 메뉴바
+    ul.mainmenu
+      li#searchmenu.menu
+        a(href='/search') SEARCH
+      li#portfoliiomenu.menu
+        a(href='/make') PORTFOLIO
+      li#productmenu.menu
+        a(href='/product') PRODUCT
+    .top_phrase
+      | &#xAC1C;&#xBC1C;&#xC790;&#xB4E4;&#xC758; &#xD3EC;&#xD2B8;&#xD3F4;&#xB9AC;&#xC624;&#xB97C; &#xBCF4;&#xACE0; &#xC801;&#xD569;&#xD55C; &#xC778;&#xC7AC;&#xB97C; &#xCC3E;&#xC73C;&#xC138;&#xC694;.
+    .search_box
+      form(action='/search/submit', method='post', name='searchform')
+        .search_bar
+          input(name='searchkeyword', type='text', placeholder='검색어를 입력해 주세요.')
+        .table
+          table.dev_tab
+            tr
+              th.table_header  &#xAC1C;&#xBC1C; &#xBD84;&#xC57C; 
+              th
+                input#android(type='radio', name='dev_field', value='android')
+                label(for='android') Android
+              th
+                input#ios(type='radio', name='dev_field', value='ios')
+                label(for='ios') iOS
+              th
+                input#web(type='radio', name='dev_field', value='web')
+                label(for='web') Web
+              th
+                input#server(type='radio', name='dev_field', value='server')
+                label(for='server') Server
+          table.spe_tab
+            tr
+              th.table_header(rowspan='2')  &#xC804;&#xBB38; &#xBD84;&#xC57C; 
+              th
+                input#secure(type='radio', name='spe_field', value='secure')
+                label(for='secure') &#xBCF4;&#xC548;
+              th
+                input#iot(type='radio', name='spe_field', value='iot')
+                label(for='iot') IoT
+              th
+                input#ai(type='radio', name='spe_field', value='ai')
+                label(for='ai') &#xC778;&#xACF5;&#xC9C0;&#xB2A5;
+              th
+                input#bigdata(type='radio', name='spe_field', value='bigdata')
+                label(for='bigdata') &#xBE45;&#xB370;&#xC774;&#xD130;
+            tr
+              th
+                input#database(type='radio', name='spe_field', value='database')
+                label(for='database') DB
+              th
+                input#game(type='radio', name='spe_field', value='game')
+                label(for='game') &#xAC8C;&#xC784;
+              th
+                input#networking(type='radio', name='spe_field', value='networking')
+                label(for='networking') &#xB124;&#xD2B8;&#xC6CC;&#xD0B9;
+              th
+                input#os(type='radio', name='spe_field', value='os')
+                label(for='os') &#xC6B4;&#xC601;&#xCCB4;&#xC81C;
+          table.careerage_tab
+            th.table_header  &#xACBD;&#xB825; &#xC0AC;&#xD56D; 
+            th
+              input#no(type='radio', name='career', value='no')
+              label(for='no') &#xC2E0;&#xC785;
+            th
+              input#yes(type='radio', name='career', value='yes')
+              label(for='yes') &#xACBD;&#xB825;&#xC790;
+            th.table_header  &#xB098;&#xC774; 
+            th
+              input.age(type='text', name='minAge')
+              |  &#xC138; ~ 
+              input.age(type='text', name='maxAge')
+              |  &#xC138;
+          input.search_btn(type='submit', value='')

@@ -1,0 +1,80 @@
+@font-face{
+    font-family:'namsanBL';
+    src:url('../font/namsanBL.TTF');
+}
+@font-face{
+    font-family:'Noto Sans CJK KR Bold';
+    src:url('../font/NOTOSANSCJKKR-BOLD.OTF');
+}
+@font-face{
+    font-family:'Noto Sans CJK KR Black';
+    src:url('../font/NOTOSANSCJKKR-BLACK.OTF');
+}
+@font-face{
+    font-family:'Noto Sans CJK KR Demilight';
+    src:url('../font/NOTOSANSCJKKR-DEMILIGHT.OTF');
+}
+@font-face{
+    font-family:'Noto Sans CJK KR Light';
+    src:url('../font/NOTOSANSCJKKR-LIGHT.OTF');
+}
+@font-face{
+    font-family:'Noto Sans CJK KR Medium';
+    src:url('../font/NOTOSANSCJKKR-MEDIUM.OTF');
+}
+@font-face{
+    font-family:'Noto Sans CJK KR Regular';
+    src:url('../font/NOTOSANSCJKKR-REGULAR.OTF');
+}
+@font-face{
+    font-family:'Noto Sans CJK KR Thin';
+    src:url('../font/NOTOSANSCJKKR-THIN.OTF');
+}
+
+.menu#portfoliiomenu{
+    background: #707070;
+}
+
+#completement1{
+   font-family: "Noto Sans CJK KR Black";
+    font-size: 45px;
+    text-align: center;
+    margin:20px;
+}
+
+#completement2{
+    font-family: "Noto Sans CJK KR Regular";
+    font-size: 35px;
+    text-align: center;
+    margin:20px;
+}
+
+#completement3{
+    font-family: "Noto Sans CJK KR Regular";
+    font-size: 20px;
+    text-align: center;
+    margin:20px;
+}
+
+#backgroundimg1{
+    position: absolute;
+    left: 280px;
+    top:300px;
+}
+
+#backgroundimg2{
+    position:absolute;
+    right: 100px;
+    bottom:0px;
+}
+
+.tohome{
+    text-align: center;
+    color: #466bff;
+    font-size: 30px;
+    font-family: "Noto Sans CJK KR Regular";
+    margin-top: 150px;
+}
+
+.tohome a:visited { color: #466bff;font-family: "Noto Sans CJK KR Regular"}
+.tohome a:hover { color: #466bff;font-family: "Noto Sans CJK KR Regular"}

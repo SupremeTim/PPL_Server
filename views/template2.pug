@@ -1,0 +1,128 @@
+doctype html
+html(taglib='', prefix='c', uri='http://java.sun.com/jsp/jstl/core', xmlns='http://www.w3.org/1999/xhtml', xmlns:c='http://java.sun.com/jstl/core')
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    meta(charset='utf-8')
+    title PPL
+    script(language='JavaScript').
+    link(rel='stylesheet', href='/template/PPL_template_2/web/style.css')
+    link(href='https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,600,700,800', rel='stylesheet')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
+  body
+    // BEGIN NAVBAR
+    .navbar
+      a(href='#about') About
+      a(href='#experience') Experience
+      a(href='#projects') Projects
+      a(href='#skills') Skills
+    // END NAVBAR
+    .container
+      // HEADER
+      .jumbotron
+        .jumbotron-text
+          // 받아올 부분
+          h1#name(name='portfolio_name')=port_name
+        br
+        br
+        br
+      // END HEADER
+      // BEGIN ABOUT
+      .row.white.box-shadow
+        .side-content
+        .main-content
+          .content-header
+            a.anchor(name='about')
+            h2 About
+          #about_content.content-body
+            span
+              //- | Name : 
+              =`Name : ${name}`
+              a(name='my_name')
+            // 받아와야 하는 것
+            br
+            span
+              //- | Age :
+              =`Age : ${age}`
+              a(name='my_age')
+            // 받아와야 하는 것
+            br
+            span
+              //- | Phone :
+              =`Phone : ${phone}`
+              a(name='my_phone')
+            // 받아와야 하는 것
+            br
+            span
+              //- | Email : 
+              =`Email : ${email}`
+              a(name='my_email')
+            br
+            span
+              //- | School : 
+              =`School : ${school}`
+              a(name='my_school')
+            // 받아와야 하는 것
+            br
+            //- span
+            //-   | Carrier : 
+            //-   a(name='my_carrier')
+            br
+            br
+            br
+            div(name='my_info')=info
+              // 받아올 부분
+        .side-content
+      // END ABOUT
+      // BEGIN EXPERIENCE
+      .row
+        .side-content
+        .main-content
+          .content-header
+            a.anchor(name='experience')
+            h2 Experience
+          div(name='experience-many')
+            #content.content-body
+              .card
+                .card-header
+                  h4
+                    a(name='experience_name')=exp_name
+                  span.job-title(name='experience_term')=exp_term
+                    a(name='experience_term_start')
+                    |  ~ 
+                    a(name='experience_term_end')
+                .card-content(name='experience_content')=exp_contetn
+      .side-content
+      // END EXPERIENCE
+      // BEGIN PROJECTS
+      .row
+        .side-content-sm
+        .main-content-lg
+          .content-header
+            a.anchor(name='projects')
+            h2 Projects
+          .content-body
+            // CARD #1
+            .project-card(name='project-many')
+              .project-image
+                img(name='project_image', src=project_image )
+              .project-content
+                h4
+                  a(name='project_name')=project_name
+                p(name='project_explanation')=project_content
+                a#project_address_id(name='project_address_name', href=project_link)=project_link
+        .side-content-sm
+      // END PROJECTS
+      // BEGIN SKILLS
+      .row.white.box-shadow
+        .side-content
+        .main-content
+          .content-header
+            a.anchor(name='skills')
+            h2 Skills
+          .content-body
+            // 받아와야하는것
+            ul.ul-skills
+              li.li-skills(name='language_bar')
+                div(name='language_name')=lang
+        .side-content
+      // END SKILLS
