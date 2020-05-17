@@ -19,7 +19,7 @@ router.get("/temp", isNotLoggedIn, (req, res, next) => {
 router.post("/check", isNotLoggedIn, async (req, res, next) => {
   try {
     const { nick } = req.body;
-    const exUser = await User.find({ where: { nick } });
+    const exUser = await User.findOne({ where: { nick } });
     if (exUser) {
       req.flash("joinError", "이미 가입된 아이디입니다.");
       console.log("아이디 사용불가능!");
@@ -28,7 +28,7 @@ router.post("/check", isNotLoggedIn, async (req, res, next) => {
       });
     } else {
       console.log("아이디 사용가능!");
-      return res.render("joinpage", {
+      return res.status(204).render("joinpage", {
         yes: "ok",
       });
     }
