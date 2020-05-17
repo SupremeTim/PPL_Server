@@ -28,8 +28,9 @@ router.post("/check", isNotLoggedIn, async (req, res, next) => {
       });
     } else {
       console.log("아이디 사용가능!");
-      return res.status(204).render("joinpage", {
+      return res.render("joinpage", {
         yes: "ok",
+        id: nick,
       });
     }
   } catch (error) {
